@@ -17,7 +17,7 @@ namespace MineSweeper
             InitializeComponent();
         }
         /// <summary>
-        /// creates a grid of buttons.
+        /// creates a grid of buttons that serves as the game "field".
         /// </summary>
         private Button createButton(int x, int y, int gridX, int gridY)
         {            
@@ -32,7 +32,7 @@ namespace MineSweeper
         }
         private int[,] grid;
         private Button[,] btn_grid;                                             //array of buttons.
-        int width = 0, height = 0, startX = 10, startY = 10;
+        int /*width = 0, height = 0,*/ startX = 10, startY = 10;
         int mineXOutside = 0;
         int mineYOutside = 0;
         int XOutside = 0;
@@ -117,23 +117,5 @@ namespace MineSweeper
 //TODO: Make the color of a button red if it is clicked on and contains a mine.
 //TODO: If a button's color changes to red, display a message that says: Game Over.
 //TODO: If the Game Over message has been displayed, make the buttons stop changing color if clicked on.
-//TODO:  
+ 
 //Usefull??? b[i].Click += button_Click;.
-//Usefull???
-//private void ButtonClick(object sender, EventArgs e)
-//{
-//    //To Do - Click Event
-//    Button btn = sender as Button;
-//    MessageBox.Show(btn.Text + ", " + "Button Clicked");
-//}
-
-//BooTon[i, j].Click += new EventHandler(BooTon_Click);
-
-//private void BooTon_Click(object sender, EventArgs e)
-//        {
-//            textBox1.Text = sender.ToString().Substring(35,1);
-//            //textBox1.Text = sender.ToString();
-//            textBox2.Text = sender.ToString().Substring(37,1);
-//        }
-
-//btn_grid[XOutside, YOutside].Click +=new EventHandler(MineClickedOrNot);
