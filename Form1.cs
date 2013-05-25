@@ -20,7 +20,7 @@ namespace MineSweeper
         /// creates a grid of buttons.
         /// </summary>
         private Button createButton(int x, int y, int gridX, int gridY)
-        {
+        {            
             Button btn = new Button();
             btn.Text = "";                                                      //makes the button display nothing.
             btn.Name = gridX.ToString() + " " + gridY.ToString();               //names the new button its position within the grid.
@@ -42,6 +42,7 @@ namespace MineSweeper
         /// </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            panel1.Controls.Clear();//enables the game to restart if the start button is clicked.            
             grid = new int[/*width, height*/15, 15];
             btn_grid = new Button[/*width, height*/15, 15];                      //lol I have no idea what I'm doing.
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
@@ -66,8 +67,8 @@ namespace MineSweeper
                 if (grid[mineX, mineY] == 0)
                 {
                     btn_grid[mineX, mineY].Text = "*";
-                    btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 30.75f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
-                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X - 5, btn_grid[mineX, mineY].Location.Y);
+                    btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
+                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
                     grid[mineX, mineY] = -1; //Add a mine
                     mineCount++;
                     mineXOutside = mineX;
@@ -85,7 +86,7 @@ namespace MineSweeper
             //btn_grid[XOutside, YOutside].Click +=
             //Button btn_grid[XOutside, YOutside] = sender as Button;
             btn_grid[XOutside, YOutside].Text = "O";//Maybe I need to redraw the grid to display changes?
-            MessageBox.Show("works...");//doesn't work...
+            MessageBox.Show("works...");//not works...
         }
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
