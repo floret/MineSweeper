@@ -66,13 +66,15 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = "*";
+                    //btn_grid[mineX, mineY].Text = "*";   //mines should be hidden untill clicked on.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
                     grid[mineX, mineY] = -1; //Add a mine
                     mineCount++;
                     mineXOutside = mineX;
                     mineYOutside = mineY;
+                    //TODO: somehow populate an array with the positions of the mined buttons in the grid.
+                    //this array should then be used in place of: btn_grid[XOutside, YOutside].Text
                 }
             }
             while (mineCount <= 70);
