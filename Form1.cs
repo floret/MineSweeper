@@ -96,6 +96,7 @@ namespace MineSweeper
                     if (btn_grid[x, y].Text == " ")// change to " "
                     {//!changes the colour for all the buttons.
                         btn_grid[x, y].BackColor = Color.Red;
+                        break;//!makes it colour all the top row of buttons.
                         //btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine //!adds to squares that dont get coloured.
                         //is clicked on, but it can only change the text of a single mined
                         //button, the last to be mined.
@@ -103,6 +104,7 @@ namespace MineSweeper
                     else
                     {
                         btn_grid[x, y].BackColor = Color.Green;
+                        break;//!makes it colour all the top row of buttons.//?does x,y refer to the entire row?
                     }    
                 }
             }
