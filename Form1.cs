@@ -66,6 +66,7 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
+                    btn_grid[mineX, mineY].Text = "*"; //temporarilly used to show where the mines are for testing purposes.
                     //btn_grid[mineX, mineY].Text = "*";   //mines should be hidden untill clicked on.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
@@ -78,11 +79,12 @@ namespace MineSweeper
                 }
             }
             while (mineCount <= 70);
+            //huge success: found out this only refers to the last button created.
             btn_grid[XOutside, YOutside].Click += new EventHandler(MineClickedOrNot);//click event handler for the grid of buttons.
         }
         //private void BooTon_Click(object sender, EventArgs e)
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
-        {
+        {// currently only applies to the last button in the grid.
             //Still trying to get the buttons to respond, I think the btn_grid[XOutside, YOutside].Click part isn't working.
             //btn_grid[XOutside, YOutside].Click += sender as Button;
             //btn_grid[XOutside, YOutside].Click +=
