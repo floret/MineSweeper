@@ -42,9 +42,9 @@ namespace MineSweeper
         /// </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
-            panel1.Controls.Clear();//enables the game to restart if the start button is clicked.            
+            panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[/*width, height*/15, 15];
-            btn_grid = new Button[/*width, height*/15, 15];                      //lol I have no idea what I'm doing.
+            btn_grid = new Button[/*width, height*/15, 15];                     //lol I have no idea what I'm doing.
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
@@ -53,6 +53,8 @@ namespace MineSweeper
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
+                    //
+                    btn_grid[x, y].Click += new EventHandler(MineClickedOrNot);
                 }
             }
             //Add mines.
@@ -66,8 +68,8 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = " "; //temporarilly used to show where the mines are for testing purposes.
-                    //btn_grid[mineX, mineY].Text = "*";   //mines should be hidden untill clicked on.
+                    btn_grid[mineX, mineY].Text = "*"; //temporarilly used to show where the mines are for testing purposes.
+                    //btn_grid[mineX, mineY].Text = " ";   //mines should be hidden untill clicked on.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
                     grid[mineX, mineY] = -1; //Add a mine
@@ -80,18 +82,15 @@ namespace MineSweeper
             }
             while (mineCount <= 70);
             //huge success: found out this only refers to the last button created.
-            btn_grid[XOutside, YOutside].Click += new EventHandler(MineClickedOrNot);//click event handler for the grid of buttons.
+            //btn_grid[XOutside, YOutside].Click += new EventHandler(MineClickedOrNot);//click event handler for the grid of buttons.
         }
         //private void BooTon_Click(object sender, EventArgs e)
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
         {// currently only applies to the last button in the grid.
-            //Still trying to get the buttons to respond, I think the btn_grid[XOutside, YOutside].Click part isn't working.
-            //btn_grid[XOutside, YOutside].Click += sender as Button;
-            //btn_grid[XOutside, YOutside].Click +=
-            //Button btn_grid[XOutside, YOutside] = sender as Button;
-            //
+            //Still trying to get the buttons to respond, I think the btn_grid[XOutside, YOutside].Click part isn't working.            
+            
             //I'm going to go ahead and see if I can't get the logic to at least work for one button.
-            if (btn_grid[XOutside, YOutside].Text == " ")
+            if (btn_grid[XOutside, YOutside].Text == "*")// change to " "
             {
                 btn_grid[XOutside, YOutside].BackColor = Color.Red;
                 btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine
