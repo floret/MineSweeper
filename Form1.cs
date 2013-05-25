@@ -94,22 +94,30 @@ namespace MineSweeper
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {
                     if (btn_grid[x, y].Text == " ")// change to " "
-                    {//!changes the colour for all the buttons.
-                        btn_grid[x, y].BackColor = Color.Red;
+                    {//!changes the colour for all the buttons in the first horizontal row.
+                        btn_grid[x, y].BackColor = Color.Red;                        
                         break;//!makes it colour all the top row of buttons.
                         //btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine //!adds to squares that dont get coloured.
                         //is clicked on, but it can only change the text of a single mined
                         //button, the last to be mined.
                     }
-                    else
+                    else /*if (btn_grid[x, y].Text != " ")*/ //makes no difference.
                     {
                         btn_grid[x, y].BackColor = Color.Green;
                         break;//!makes it colour all the top row of buttons.//?does x,y refer to the entire row?
                     }    
                 }
             }
-            //I'm going to go ahead and see if I can't get the logic to at least work for one button.
-                    
+            //it might be possible to do it using a while or do statement, by using two iteraters, x&y, but only using one for the while/do.***
+
+            //if(btn_grid[0,0].Text==" ")                   //Its possible to get
+            //{                                             //this method to work
+            //    btn_grid[0, 0].Text = "x";                //by using if else 
+            //}                                             //statements for all 
+            //else if (btn_grid[14, 14].Text == " ")        //the co-ordinates in
+            //{                                             //the grid, but there 
+            //    btn_grid[14, 14].Text = "x";              //is probibly a better
+            //}                                             //way to do it.
         }
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
