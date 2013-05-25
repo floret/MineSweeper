@@ -66,7 +66,7 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = "*"; //temporarilly used to show where the mines are for testing purposes.
+                    btn_grid[mineX, mineY].Text = " "; //temporarilly used to show where the mines are for testing purposes.
                     //btn_grid[mineX, mineY].Text = "*";   //mines should be hidden untill clicked on.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
@@ -89,8 +89,19 @@ namespace MineSweeper
             //btn_grid[XOutside, YOutside].Click += sender as Button;
             //btn_grid[XOutside, YOutside].Click +=
             //Button btn_grid[XOutside, YOutside] = sender as Button;
-            btn_grid[XOutside, YOutside].Text = "O";//Maybe I need to redraw the grid to display changes?
-            MessageBox.Show("works...");//not works...
+            //
+            //I'm going to go ahead and see if I can't get the logic to at least work for one button.
+            if (btn_grid[XOutside, YOutside].Text == " ")
+            {
+                btn_grid[XOutside, YOutside].BackColor = Color.Red;
+                btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine
+                                                                //is clicked on, but it can only change the text of a single mined
+                                                                //button, the last to be mined.
+            }
+            else
+            {
+                btn_grid[XOutside, YOutside].BackColor = Color.Green;
+            }            
         }
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
