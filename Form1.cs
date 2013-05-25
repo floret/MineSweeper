@@ -38,7 +38,7 @@ namespace MineSweeper
         int XOutside = 0;
         int YOutside = 0;
         /// <summary>
-        /// This button starts the game, by having a grid of buttons made and then randomly adding 70 mines to the grid.
+        /// This button starts the game, by having a grid of buttons made and then randomly adding less than 70 mines to the grid.
         /// </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -53,8 +53,9 @@ namespace MineSweeper
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
+                    btn_grid[XOutside, YOutside].Click += new EventHandler(MineClickedOrNot);//click event handler for the grid of buttons.
                     //
-                    btn_grid[x, y].Click += new EventHandler(MineClickedOrNot);
+                    //btn_grid[x, y].Click += new EventHandler(MineClickedOrNot);
                 }
             }
             //Add mines.
@@ -68,7 +69,7 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = "*"; //temporarilly used to show where the mines are for testing purposes.
+                    btn_grid[mineX, mineY].Text = " "; //temporarilly used to show where the mines are for testing purposes.
                     //btn_grid[mineX, mineY].Text = " ";   //mines should be hidden untill clicked on.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X /*- 5*/, btn_grid[mineX, mineY].Location.Y);//commenting out the -5 stops the buttons from resizing
@@ -86,21 +87,27 @@ namespace MineSweeper
         }
         //private void BooTon_Click(object sender, EventArgs e)
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
-        {// currently only applies to the last button in the grid.
+        {// !currently only applies to the last button in the grid.
             //Still trying to get the buttons to respond, I think the btn_grid[XOutside, YOutside].Click part isn't working.            
-            
-            //I'm going to go ahead and see if I can't get the logic to at least work for one button.
-            if (btn_grid[XOutside, YOutside].Text == "*")// change to " "
+            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
-                btn_grid[XOutside, YOutside].BackColor = Color.Red;
-                btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine
-                                                                //is clicked on, but it can only change the text of a single mined
-                                                                //button, the last to be mined.
+                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                {
+                    if (btn_grid[x, y].Text == " ")// change to " "
+                    {//!changes the colour for all the buttons.
+                        btn_grid[x, y].BackColor = Color.Red;
+                        //btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine //!adds to squares that dont get coloured.
+                        //is clicked on, but it can only change the text of a single mined
+                        //button, the last to be mined.
+                    }
+                    else
+                    {
+                        btn_grid[x, y].BackColor = Color.Green;
+                    }    
+                }
             }
-            else
-            {
-                btn_grid[XOutside, YOutside].BackColor = Color.Green;
-            }            
+            //I'm going to go ahead and see if I can't get the logic to at least work for one button.
+                    
         }
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
