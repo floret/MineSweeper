@@ -33,10 +33,10 @@ namespace MineSweeper
         private int[,] grid;
         private Button[,] btn_grid;                                             //array of buttons.
         int startX = 10, startY = 10;
-        int mineXOutside = 0;
-        int mineYOutside = 0;
-        int XOutside = 0;
-        int YOutside = 0;
+        int mineXOutside = 0;                                                   //mine's x co-ordinate useble by all methods.
+        int mineYOutside = 0;                                                   //mine's y co-ordinate useble by all methods.
+        int XOutside = 0;                                                       //created so that the x value can be used by all methods
+        int YOutside = 0;                                                       //created so that the y value can be used by all methods
 
         /// <summary>
         /// This button starts the game, by having a grid of buttons made and then randomly adding less than 70 mines to the grid.
@@ -50,7 +50,7 @@ namespace MineSweeper
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {//populates the btn_grid array, which is an array of buttons, with buttons made with the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
+                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid.
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
@@ -65,8 +65,8 @@ namespace MineSweeper
                 int mineY = rand.Next(15);
 
                 if (grid[mineX, mineY] == 0)
-                {
-                    btn_grid[mineX, mineY].Text = " ";
+                {//the mines are hidden by making their text properties " "
+                    btn_grid[mineX, mineY].Text = " ";                          //used to hide the mines in plain unsight.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);
                     mineCount++;
