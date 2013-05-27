@@ -66,7 +66,7 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = " ";
+                    btn_grid[mineX, mineY].Text = "*";
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);
                     grid[mineX, mineY] = -1; //Add a mine //? not sure why.
@@ -92,6 +92,7 @@ namespace MineSweeper
         /// </summary>
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
         {// !currently only applies to the last button in the grid.
+            
             //Still trying to get the buttons to respond.   
             //foreach this.Click try using this.
             //for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
@@ -115,25 +116,53 @@ namespace MineSweeper
             //}
             foreach (Button btn in btn_grid)//!same thing either entire grid or single button.
             {
-                if (btn.Text == " ")
+                if (btn.Click != null)
+                { }
+                int count1 = 0; int count2 = 0; int turns = 0;
+                //
+                do
                 {
-                    btn.BackColor = Color.Red;
-                    //break;//!makes it colour all the top row of buttons.                        
-                    //is clicked on, but it can only change the text of a single mined
-                    //button, the last to be mined.
-                    break;//!makes only the first button work.
+                    if (count1 == 16) { count2++; count1 = 0; }
+                    if (btn.Text == "*")
+                    {
+
+                        //this.BackColor = Color.Red;
+                        btn.BackColor = Color.Red;
+                        //break;
+                    }
+                    else
+                    {
+                        //this.BackColor = Color.Green;
+                        btn.BackColor = Color.Green;
+                        //break;
+                    }
+                    count1++;
                 }
-                else
-                {
-                    btn.BackColor = Color.Green;
-                    //break;//!makes it colour all the top row of buttons.
-                    //?does x,y refer to the entire row?
-                    break;//!makes only the first button work.
-                }
+                while (count2 != 16);
+                //
+                //if (btn.Text != "*")
+                //{
+                    
+                //    this.BackColor = Color.Red;
+                //    //btn.BackColor = Color.Red;
+                //    //break;//!makes it colour all the top row of buttons.                        
+                //    //is clicked on, but it can only change the text of a single mined
+                //    //button, the last to be mined.
+                //    //break;//!makes only the first button work.
+                //}
+                //else
+                //{
+                //    this.BackColor = Color.Green;
+                //    //btn.BackColor = Color.Green;
+                //    //break;//!makes it colour all the top row of buttons.
+                //    //?does x,y refer to the entire row?
+                //    //break;//!makes only the first button work.
+                //}
             }
+            //!makes the only button that works 14,14
             //foreach (Button btn in btn_grid)
             //{
-            //    for (int x = 0; x < 15; x++)                                        //for the horizontal buttons. //!makes the only button that works 14,14
+            //    for (int x = 0; x < 15; x++)                                        //for the horizontal buttons. 
             //    {
             //        for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
             //        {
