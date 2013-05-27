@@ -92,7 +92,15 @@ namespace MineSweeper
         /// </summary>
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
         {// !currently only applies to the last button in the grid.
-            
+            var myButton = (Button)sender;
+            if (myButton.Text == "*")
+            {
+                myButton.BackColor=Color.Red;
+            }
+            else
+            {
+                myButton.BackColor=Color.Green;
+            }
             //Still trying to get the buttons to respond.   
             //foreach this.Click try using this.
             //for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
@@ -114,31 +122,29 @@ namespace MineSweeper
             //        }
             //    }
             //}
-            foreach (Button btn in btn_grid)//!same thing either entire grid or single button.
-            {
-                if (btn.Click != null)
-                { }
-                int count1 = 0; int count2 = 0; int turns = 0;
-                //
-                do
-                {
-                    if (count1 == 16) { count2++; count1 = 0; }
-                    if (btn.Text == "*")
-                    {
+            //////foreach (Button btn in btn_grid)//!same thing either entire grid or single button.
+            //////{
+            //////    int count1 = 0; int count2 = 0; int turns = 0;
+            //////    //
+            //////    do
+            //////    {
+            //////        if (count1 == 16) { count2++; count1 = 0; }
+            //////        if (btn.Text == "*")
+            //////        {
 
-                        //this.BackColor = Color.Red;
-                        btn.BackColor = Color.Red;
-                        //break;
-                    }
-                    else
-                    {
-                        //this.BackColor = Color.Green;
-                        btn.BackColor = Color.Green;
-                        //break;
-                    }
-                    count1++;
-                }
-                while (count2 != 16);
+            //////            //this.BackColor = Color.Red;
+            //////            btn.BackColor = Color.Red;
+            //////            //break;
+            //////        }
+            //////        else
+            //////        {
+            //////            //this.BackColor = Color.Green;
+            //////            btn.BackColor = Color.Green;
+            //////            //break;
+            //////        }
+            //////        count1++;
+            //////    }
+            //////    while (count2 != 16);
                 //
                 //if (btn.Text != "*")
                 //{
@@ -158,7 +164,7 @@ namespace MineSweeper
                 //    //?does x,y refer to the entire row?
                 //    //break;//!makes only the first button work.
                 //}
-            }
+            //}
             //!makes the only button that works 14,14
             //foreach (Button btn in btn_grid)
             //{
