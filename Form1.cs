@@ -60,141 +60,55 @@ namespace MineSweeper
             Random rand = new Random();                                          //creates a random (variable?)
             int mineCount = 0;
             do
-            {//add comments from other copy of minesweeper.
+            {
                 int mineX = rand.Next(15);
                 int mineY = rand.Next(15);
 
                 if (grid[mineX, mineY] == 0)
                 {
-                    btn_grid[mineX, mineY].Text = "*";
+                    btn_grid[mineX, mineY].Text = " ";
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);
-                    grid[mineX, mineY] = -1; //Add a mine //? not sure why.
                     mineCount++;
                     mineXOutside = mineX;
                     mineYOutside = mineY;
-                    //TODO: somehow populate an array with the positions of the mined buttons in the grid.
-                    //this array should then be used in place of: btn_grid[XOutside, YOutside].Text
                 }
             }
-            while (mineCount <= 70);
-            //huge success: found out this only refers to the last button created.
+            while (mineCount != 70);
+
             foreach (Button btn in btn_grid)
             {
-                btn.Click += new EventHandler(MineClickedOrNot);
+                btn.Click += new EventHandler(MineClickedOrNot);                //click event handler for the grid of buttons.
             }
         }
 
         /// <summary>
         /// When the user clicks on a button in the button grid, this method checks whether it contains a
-        /// mine or not, if it does it changes the colour of the button to red and if it doesn't, it 
-        /// changes its colour to green.
+        /// mine or not, if it does it changes the colour of the button to red and reveils the location of 
+        /// the other mines and if it doesn't, it changes the button's colour to green.
         /// </summary>
-        private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
-        {// !currently only applies to the last button in the grid.
-            var myButton = (Button)sender;
-            if (myButton.Text == "*")
+        private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
+        {
+            var myButton = (Button)sender;                                      //makes the buttonin the grid that the user clicked myButton.
+            if (myButton.Text == " ")                                           //if the button contains a mine.
             {
-                myButton.BackColor=Color.Red;
+                myButton.BackColor = Color.Red;
+                foreach (Button btn in btn_grid)                                //for all the buttons in the grid.
+                {
+                    if (btn.Text == " ")                                        //if the button contains a mine
+                    {
+                        btn.BackColor = Color.Red;                              //make  the button red
+                        btn.Text = "*";                                         //and make it contain a "*" which represents a mine.
+                    }
+                }
             }
             else
             {
-                myButton.BackColor=Color.Green;
+                myButton.BackColor = Color.Green;                                 //if the button doesn't contain a mine it becomes green.
             }
-            //Still trying to get the buttons to respond.   
-            //foreach this.Click try using this.
-            //for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
-            //{
-            //    for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-            //    {
-            //        if (btn_grid[x, y].Text == " ")
-            //        {
-            //            btn_grid[x, y].BackColor = Color.Red;
-            //            //break;//!makes it colour all the top row of buttons.                        
-            //            //is clicked on, but it can only change the text of a single mined
-            //            //button, the last to be mined.
-            //        }
-            //        else
-            //        {
-            //            btn_grid[x, y].BackColor = Color.Green;
-            //            //break;//!makes it colour all the top row of buttons.
-            //            //?does x,y refer to the entire row?
-            //        }
-            //    }
-            //}
-            //////foreach (Button btn in btn_grid)//!same thing either entire grid or single button.
-            //////{
-            //////    int count1 = 0; int count2 = 0; int turns = 0;
-            //////    //
-            //////    do
-            //////    {
-            //////        if (count1 == 16) { count2++; count1 = 0; }
-            //////        if (btn.Text == "*")
-            //////        {
-
-            //////            //this.BackColor = Color.Red;
-            //////            btn.BackColor = Color.Red;
-            //////            //break;
-            //////        }
-            //////        else
-            //////        {
-            //////            //this.BackColor = Color.Green;
-            //////            btn.BackColor = Color.Green;
-            //////            //break;
-            //////        }
-            //////        count1++;
-            //////    }
-            //////    while (count2 != 16);
-                //
-                //if (btn.Text != "*")
-                //{
-                    
-                //    this.BackColor = Color.Red;
-                //    //btn.BackColor = Color.Red;
-                //    //break;//!makes it colour all the top row of buttons.                        
-                //    //is clicked on, but it can only change the text of a single mined
-                //    //button, the last to be mined.
-                //    //break;//!makes only the first button work.
-                //}
-                //else
-                //{
-                //    this.BackColor = Color.Green;
-                //    //btn.BackColor = Color.Green;
-                //    //break;//!makes it colour all the top row of buttons.
-                //    //?does x,y refer to the entire row?
-                //    //break;//!makes only the first button work.
-                //}
-            //}
-            //!makes the only button that works 14,14
-            //foreach (Button btn in btn_grid)
-            //{
-            //    for (int x = 0; x < 15; x++)                                        //for the horizontal buttons. 
-            //    {
-            //        for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-            //        {
-            //            if (btn_grid[x, y].Text == " ")// change to " "
-            //            {//!changes the colour for all the buttons in the first horizontal row.
-            //                btn_grid[x, y].BackColor = Color.Red;
-            //                break;//!makes it colour all the top row of buttons.
-            //                //btn_grid[mineXOutside, mineYOutside].Text = "*";//huge success: It is able to determine whether or not a mine //!adds to squares that dont get coloured.
-            //                //is clicked on, but it can only change the text of a single mined
-            //                //button, the last to be mined.
-            //            }
-            //            else /*if (btn_grid[x, y].Text != " ")*/ //makes no difference.
-            //            {
-            //                btn_grid[x, y].BackColor = Color.Green;
-            //                break;//!makes it colour all the top row of buttons.//?does x,y refer to the entire row?
-            //            }
-            //        }
-            //    }
-            //}
-            //it might be possible to do it using a while or do statement, by using two iteraters, x&y, but only using one for the while/do.***
         }
     }
 }
-//TODO: make a method that when a button in the grid is clicked on checks whether or not it contains a mine or not.
-
-//TODO: Make the color of a button green if it is clicked on and doesn't contain a mine.
-//TODO: Make the color of a button red if it is clicked on and contains a mine.
 //TODO: If a button's color changes to red, display a message that says: Game Over.
 //TODO: If the Game Over message has been displayed, make the buttons stop changing color if clicked on.
+//TODO: find out the game logic or algorithm for the real minesweeper game.
