@@ -40,12 +40,14 @@ namespace MineSweeper
         int mineYOutside = 0;                                                   //mine's y co-ordinate useble by all methods.
         int XOutside = 0;                                                       //created so that the x value can be used by all methods
         int YOutside = 0;                                                       //created so that the y value can be used by all methods
+        int GOFlag = 0;//Flag to show that the Game Over message has been displayed.
 
         /// <summary>
         /// This button starts the game, by having a grid of buttons made and then randomly adding less than 70 mines to the grid.
         /// </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            GOFlag = 0;//make the buttons able to be made green again.
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[/*width, height*/15, 15];
             btn_grid = new Button[/*width, height*/15, 15];                     //lol I have no idea what I'm doing.
@@ -92,9 +94,10 @@ namespace MineSweeper
         /// </summary>
         private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
         {
+            
+            var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
             try
-            {
-                var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+            {                
                 if (myButton.Text == " ")                                           //if the button contains a mine.
                 {
                     myButton.BackColor = Color.Red;
@@ -109,21 +112,23 @@ namespace MineSweeper
                 }
                 else
                 {
-                    myButton.BackColor = Color.Green;                                 //if the button doesn't contain a mine it becomes green.
+                    if (GOFlag == 0)
+                    {
+                        myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
+                    }                    
                 }
-                if (myButton.Text == "*")
+                if ((myButton.Text == "*") && (GOFlag != 1))//the &&(GOFlag!=1) prevents the Game Over message from being displayed more than once a round.
                 {
                     throw new exMineFound();
                 }
             }
-            catch (exMineFound)
+            catch (exMineFound)//happens when a mine is clicked on.
             {
-                MessageBox.Show("Game Over");
-                //TODO: Make the non mined buttons unclickable.
+                MessageBox.Show("Game Over");                   
+                GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
             
         }
     }
 }
-//TODO: If the Game Over message has been displayed, make the buttons stop changing color if clicked on.
 //TODO: find out the game logic or algorithm for the real minesweeper game.
