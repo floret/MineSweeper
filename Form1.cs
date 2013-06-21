@@ -16,6 +16,9 @@ namespace MineSweeper
         {
             InitializeComponent();
         }
+        //Custom exeptions.
+        class exMineFound : System.Exception { }//Stops the buttons from becoming green after a mine is found.        
+
         /// <summary>
         /// creates a grid of buttons that serves as the game "field".
         /// </summary>
@@ -50,7 +53,7 @@ namespace MineSweeper
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {//populates the btn_grid array, which is an array of buttons, with buttons made with the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid.
+                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid by calling the createButton method.
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
@@ -89,26 +92,38 @@ namespace MineSweeper
         /// </summary>
         private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
         {
-            var myButton = (Button)sender;                                      //makes the buttonin the grid that the user clicked myButton.
-            if (myButton.Text == " ")                                           //if the button contains a mine.
+            try
             {
-                myButton.BackColor = Color.Red;
-                foreach (Button btn in btn_grid)                                //for all the buttons in the grid.
+                var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+                if (myButton.Text == " ")                                           //if the button contains a mine.
                 {
-                    if (btn.Text == " ")                                        //if the button contains a mine
+                    myButton.BackColor = Color.Red;
+                    foreach (Button btn in btn_grid)                                //for all the buttons in the grid.
                     {
-                        btn.BackColor = Color.Red;                              //make  the button red
-                        btn.Text = "*";                                         //and make it contain a "*" which represents a mine.
+                        if (btn.Text == " ")                                        //if the button contains a mine
+                        {
+                            btn.BackColor = Color.Red;                              //make  the button red
+                            btn.Text = "*";                                         //and make it contain a "*" which represents a mine.                            
+                        }
                     }
                 }
+                else
+                {
+                    myButton.BackColor = Color.Green;                                 //if the button doesn't contain a mine it becomes green.
+                }
+                if (myButton.Text == "*")
+                {
+                    throw new exMineFound();
+                }
             }
-            else
+            catch (exMineFound)
             {
-                myButton.BackColor = Color.Green;                                 //if the button doesn't contain a mine it becomes green.
+                MessageBox.Show("Game Over");
+                //TODO: Make the non mined buttons unclickable.
             }
+            
         }
     }
 }
-//TODO: If a button's color changes to red, display a message that says: Game Over.
 //TODO: If the Game Over message has been displayed, make the buttons stop changing color if clicked on.
 //TODO: find out the game logic or algorithm for the real minesweeper game.
