@@ -128,8 +128,16 @@ namespace MineSweeper
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
             //
+            //TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
+
+            //            
+            //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
+            //TODO: make squares flagable.
             //            
         }
     }
 }
 //TODO: find out the game logic or algorithm for the real minesweeper game.
+//TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
+//TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
+//TODO: make squares flagable.
