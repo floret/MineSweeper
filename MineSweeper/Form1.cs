@@ -49,8 +49,8 @@ namespace MineSweeper
         {
             GOFlag = 0;//make the buttons able to be made green again.
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
-            grid = new int[/*width, height*/15, 15];
-            btn_grid = new Button[/*width, height*/15, 15];                     
+            grid = new int[15, 15];
+            btn_grid = new Button[15, 15];                     
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
@@ -129,7 +129,11 @@ namespace MineSweeper
             }
             //
             //TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
+            //if (myButton+15.text = " ")
+            //{
 
+            //}
+            var ClickedButton =(Button)sender;
             //            
             //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
             //TODO: make squares flagable.
@@ -141,3 +145,4 @@ namespace MineSweeper
 //TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
 //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
 //TODO: make squares flagable.
+//TODO: make a win message.
