@@ -50,7 +50,7 @@ namespace MineSweeper
             GOFlag = 0;//make the buttons able to be made green again.
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[/*width, height*/15, 15];
-            btn_grid = new Button[/*width, height*/15, 15];                     //lol I have no idea what I'm doing.
+            btn_grid = new Button[/*width, height*/15, 15];                     
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
@@ -127,7 +127,8 @@ namespace MineSweeper
                 MessageBox.Show("Game Over");                   
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
-            
+            //
+            //            
         }
     }
 }
