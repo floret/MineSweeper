@@ -47,6 +47,7 @@ namespace MineSweeper
         /// </summary>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            mineCountInner = 0;
             GOFlag = 0;//make the buttons able to be made green again.
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[15, 15];
@@ -86,7 +87,7 @@ namespace MineSweeper
                 btn.Click += new EventHandler(MineClickedOrNot);                //click event handler for the grid of buttons.
             }
         }
-
+        int mineCountInner = 0;
         /// <summary>
         /// When the user clicks on a button in the button grid, this method checks whether it contains a
         /// mine or not, if it does it changes the colour of the button to red and reveils the location of 
@@ -103,7 +104,7 @@ namespace MineSweeper
                 {
                     //Button[x,y]
                     if (btn_grid[x, y] == myButton)
-                    {
+                    {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
                         var myButtonP1 = btn_grid[x + 1, y];
                         var myButtonP14 = btn_grid[x - 1, y + 1];
                         var myButtonP15 = btn_grid[x, y + 1];
@@ -123,6 +124,19 @@ namespace MineSweeper
                         myButtonM14.BackColor = Color.Orange;
                         myButtonM15.BackColor = Color.Orange;
                         myButtonM16.BackColor = Color.Orange;
+
+                        
+
+                        if (myButtonP1.Text == " ") { mineCountInner++; }
+                        if (myButtonP14.Text == " ") { mineCountInner++; }
+                        if (myButtonP15.Text == " ") { mineCountInner++; }
+                        if (myButtonP16.Text == " ") { mineCountInner++; }
+
+                        if (myButtonM1.Text == " ") { mineCountInner++; }
+                        if (myButtonM14.Text == " ") { mineCountInner++; }
+                        if (myButtonM15.Text == " ") { mineCountInner++; }
+                        if (myButtonM16.Text == " ") { mineCountInner++; }
+                        
                     }
                 }
             }
@@ -146,6 +160,9 @@ namespace MineSweeper
                     if (GOFlag == 0)
                     {
                         myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
+                        myButton.ForeColor = Color.Blue;
+                        myButton.Text = mineCountInner.ToString();
+                        mineCountInner = 0;
                     }
                 }
                 if ((myButton.Text == "*") && (GOFlag != 1))//the &&(GOFlag!=1) prevents the Game Over message from being displayed more than once a round.
