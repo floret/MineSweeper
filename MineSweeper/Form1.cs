@@ -94,10 +94,41 @@ namespace MineSweeper
         /// </summary>
         private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
         {
-            
+
             var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+            //create surrounding buttons here.
+            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+            {
+                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                {
+                    //Button[x,y]
+                    if (btn_grid[x, y] == myButton)
+                    {
+                        var myButtonP1 = btn_grid[x + 1, y];
+                        var myButtonP14 = btn_grid[x - 1, y + 1];
+                        var myButtonP15 = btn_grid[x, y + 1];
+                        var myButtonP16 = btn_grid[x + 1, y + 1];
+
+                        var myButtonM1 = btn_grid[x - 1, y];
+                        var myButtonM14 = btn_grid[x + 1, y - 1];
+                        var myButtonM15 = btn_grid[x, y - 1];
+                        var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                        myButtonP1.BackColor = Color.Orange;
+                        myButtonP14.BackColor = Color.Orange;
+                        myButtonP15.BackColor = Color.Orange;
+                        myButtonP16.BackColor = Color.Orange;
+
+                        myButtonM1.BackColor = Color.Orange;
+                        myButtonM14.BackColor = Color.Orange;
+                        myButtonM15.BackColor = Color.Orange;
+                        myButtonM16.BackColor = Color.Orange;
+                    }
+                }
+            }
+            //
             try
-            {                
+            {
                 if (myButton.Text == " ")                                           //if the button contains a mine.
                 {
                     myButton.BackColor = Color.Red;
@@ -115,33 +146,16 @@ namespace MineSweeper
                     if (GOFlag == 0)
                     {
                         myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
-                    }                    
+                    }
                 }
                 if ((myButton.Text == "*") && (GOFlag != 1))//the &&(GOFlag!=1) prevents the Game Over message from being displayed more than once a round.
                 {
-                    throw new exMineFound();                    
+                    throw new exMineFound();
                 }
             }
             catch (exMineFound)//happens when a mine is clicked on.
             {
-                for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
-                {
-                    for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-                    {
-                        //Button[x,y]
-                        if (btn_grid[x, y] == myButton)
-                        {
-                            var myButtonP1 = btn_grid[x + 1, y];
-                            myButtonP1.BackColor = Color.Orange;//big success!!!!!!!!!!
-                        }
-                        //
-                        //btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
-                        //grid[x, y] = 0;
-                        //YOutside = y;
-                        //XOutside = x;
-                    }
-                }
-                MessageBox.Show("Game Over");                   
+                MessageBox.Show("Game Over");
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
             //
