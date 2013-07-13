@@ -105,37 +105,43 @@ namespace MineSweeper
                     //Button[x,y]
                     if (btn_grid[x, y] == myButton)
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
-                        var myButtonP1 = btn_grid[x + 1, y];
-                        var myButtonP14 = btn_grid[x - 1, y + 1];
-                        var myButtonP15 = btn_grid[x, y + 1];
-                        var myButtonP16 = btn_grid[x + 1, y + 1];
+                        try
+                        {//!try statement makes it ignore error, but also stops it from counting.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
 
-                        var myButtonM1 = btn_grid[x - 1, y];
-                        var myButtonM14 = btn_grid[x + 1, y - 1];
-                        var myButtonM15 = btn_grid[x, y - 1];
-                        var myButtonM16 = btn_grid[x - 1, y - 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
 
-                        myButtonP1.BackColor = Color.Orange;
-                        myButtonP14.BackColor = Color.Orange;
-                        myButtonP15.BackColor = Color.Orange;
-                        myButtonP16.BackColor = Color.Orange;
+                            myButtonP1.BackColor = Color.Orange;
+                            myButtonP14.BackColor = Color.Orange;
+                            myButtonP15.BackColor = Color.Orange;
+                            myButtonP16.BackColor = Color.Orange;
 
-                        myButtonM1.BackColor = Color.Orange;
-                        myButtonM14.BackColor = Color.Orange;
-                        myButtonM15.BackColor = Color.Orange;
-                        myButtonM16.BackColor = Color.Orange;
+                            myButtonM1.BackColor = Color.Orange;
+                            myButtonM14.BackColor = Color.Orange;
+                            myButtonM15.BackColor = Color.Orange;
+                            myButtonM16.BackColor = Color.Orange;
 
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
                         
-
-                        if (myButtonP1.Text == " ") { mineCountInner++; }
-                        if (myButtonP14.Text == " ") { mineCountInner++; }
-                        if (myButtonP15.Text == " ") { mineCountInner++; }
-                        if (myButtonP16.Text == " ") { mineCountInner++; }
-
-                        if (myButtonM1.Text == " ") { mineCountInner++; }
-                        if (myButtonM14.Text == " ") { mineCountInner++; }
-                        if (myButtonM15.Text == " ") { mineCountInner++; }
-                        if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        catch
+                        {
+ 
+                        }
                         
                     }
                 }
