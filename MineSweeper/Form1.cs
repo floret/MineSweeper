@@ -50,7 +50,7 @@ namespace MineSweeper
             GOFlag = 0;//make the buttons able to be made green again.
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[15, 15];
-            btn_grid = new Button[15, 15];                     
+            btn_grid = new Button[15, 15];
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
@@ -119,11 +119,28 @@ namespace MineSweeper
                 }
                 if ((myButton.Text == "*") && (GOFlag != 1))//the &&(GOFlag!=1) prevents the Game Over message from being displayed more than once a round.
                 {
-                    throw new exMineFound();
+                    throw new exMineFound();                    
                 }
             }
             catch (exMineFound)//happens when a mine is clicked on.
             {
+                for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+                {
+                    for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                    {
+                        //Button[x,y]
+                        if (btn_grid[x, y] == myButton)
+                        {
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            myButtonP1.BackColor = Color.Orange;//big success!!!!!!!!!!
+                        }
+                        //
+                        //btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
+                        //grid[x, y] = 0;
+                        //YOutside = y;
+                        //XOutside = x;
+                    }
+                }
                 MessageBox.Show("Game Over");                   
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
@@ -133,7 +150,24 @@ namespace MineSweeper
             //{
 
             //}
-            var ClickedButton =(Button)sender;//attempt at finding a way to refer to the squares around myButton.            
+            //var ClickedButton =(Button[XOutside+1,YOutside+1])sender;//attempt at finding a way to refer to the squares around myButton. 
+            //for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+            //{
+            //    for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+            //    {
+            //        //Button[x,y]
+            //        if (btn_grid[x, y] == myButton)
+            //        {
+            //            var myButtonP1=btn_grid[x+1,y];
+            //            myButtonP1.BackColor = Color.AliceBlue;
+            //        }
+            //        //
+            //        //btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
+            //        //grid[x, y] = 0;
+            //        //YOutside = y;
+            //        //XOutside = x;
+            //    }
+            //}
             //            
             //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
             //TODO: make squares flagable.
