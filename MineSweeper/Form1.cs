@@ -73,7 +73,7 @@ namespace MineSweeper
                 {//the mines are hidden by making their text properties " "
                     btn_grid[mineX, mineY].Text = " ";                          //used to hide the mines in plain unsight.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
-                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);
+                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);//location of new square is next to old square
                     mineCount++;
                     mineXOutside = mineX;
                     mineYOutside = mineY;
@@ -133,7 +133,7 @@ namespace MineSweeper
             //{
 
             //}
-            var ClickedButton =(Button)sender;
+            var ClickedButton =(Button)sender;//attempt at finding a way to refer to the squares around myButton.            
             //            
             //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
             //TODO: make squares flagable.
