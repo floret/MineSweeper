@@ -97,6 +97,8 @@ namespace MineSweeper
         {
 
             var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+            //Counts surrounding mines.
+
             //create surrounding buttons here.
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
@@ -107,6 +109,16 @@ namespace MineSweeper
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
                         try
                         {//!try statement makes it ignore error, but also stops it from counting.
+                            /*
+                                +----+----+----+
+                                |x-1 | x  |x+1 | y-1
+                                +----+----+----+
+                                |x-1 |mybn|x+1 | y
+                                +----+----+----+
+                                |x-1 | x  |x+1 | y+1
+                                +----+----+----+        
+                            */
+
                             var myButtonP1 = btn_grid[x + 1, y];
                             var myButtonP14 = btn_grid[x - 1, y + 1];
                             var myButtonP15 = btn_grid[x, y + 1];
@@ -119,6 +131,7 @@ namespace MineSweeper
                             //
                             //if (btn_grid.Equals(btn_grid[x - 1, y + 1])) { MessageBox.Show("button +14 exists"); }//tries to detrmine if a square is cut off by the border.
                             //if (btn_grid[x - 1, y + 1]==true) { MessageBox.Show("button +14 exists"); }
+                            
                             //for testing only.
                             myButtonP1.BackColor = Color.Orange;
                             myButtonP14.BackColor = Color.Orange;
@@ -149,7 +162,7 @@ namespace MineSweeper
                     }
                 }
             }
-            //
+            //Checks for mines.
             try
             {
                 if (myButton.Text == " ")                                           //if the button contains a mine.
