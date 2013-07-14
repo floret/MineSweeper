@@ -116,7 +116,10 @@ namespace MineSweeper
                             var myButtonM14 = btn_grid[x + 1, y - 1];
                             var myButtonM15 = btn_grid[x, y - 1];
                             var myButtonM16 = btn_grid[x - 1, y - 1];
-
+                            //
+                            //if (btn_grid.Equals(btn_grid[x - 1, y + 1])) { MessageBox.Show("button +14 exists"); }//tries to detrmine if a square is cut off by the border.
+                            //if (btn_grid[x - 1, y + 1]==true) { MessageBox.Show("button +14 exists"); }
+                            //for testing only.
                             myButtonP1.BackColor = Color.Orange;
                             myButtonP14.BackColor = Color.Orange;
                             myButtonP15.BackColor = Color.Orange;
@@ -126,7 +129,7 @@ namespace MineSweeper
                             myButtonM14.BackColor = Color.Orange;
                             myButtonM15.BackColor = Color.Orange;
                             myButtonM16.BackColor = Color.Orange;
-
+                            //
                             if (myButtonP1.Text == " ") { mineCountInner++; }
                             if (myButtonP14.Text == " ") { mineCountInner++; }
                             if (myButtonP15.Text == " ") { mineCountInner++; }
