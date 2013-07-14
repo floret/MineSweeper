@@ -119,16 +119,15 @@ namespace MineSweeper
                             var myButtonM15 = btn_grid[x, y - 1];
                             var myButtonM16 = btn_grid[x - 1, y - 1];
                             /*
-                                +----+----+----+
-                                |x-1 | x  |x+1 | y-1
-                                +----+----+----+
-                                |x-1 |mybn|x+1 | y
-                                +----+----+----+
-                                |x-1 | x  |x+1 | y+1
-                                +----+----+----+        
+                                +----+----+----+                +----+----+----+ 
+                                |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
+                                +----+----+----+                +----+----+----+
+                                |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
+                                +----+----+----+                +----+----+----+
+                                |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
+                                +----+----+----+                +----+----+----+ 
                             */
                             //
-
                             //if minecountInner=0 remove myButton, surrounding buttons and work out the buttons 
                             //surrounding the surrounding buttons' mine count if one of them is 0 do the same again.
                             //possible solution.                            
