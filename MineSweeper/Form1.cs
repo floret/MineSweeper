@@ -100,11 +100,11 @@ namespace MineSweeper
             //Counts surrounding mines.
 
             //create surrounding buttons here.
+            //Button[x,y]
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {
-                    //Button[x,y]
                     if (btn_grid[x, y] == myButton)
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
                         try
