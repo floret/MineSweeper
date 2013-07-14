@@ -129,6 +129,10 @@ namespace MineSweeper
                             var myButtonM15 = btn_grid[x, y - 1];
                             var myButtonM16 = btn_grid[x - 1, y - 1];
                             //
+
+                            //if minecountInner=0 remove myButton, surrounding buttons and work out the buttons 
+                            //surrounding the surrounding buttons' mine count if one of them is 0 do the same again.
+
                             //if (btn_grid.Equals(btn_grid[x - 1, y + 1])) { MessageBox.Show("button +14 exists"); }//tries to detrmine if a square is cut off by the border.
                             //if (btn_grid[x - 1, y + 1]==true) { MessageBox.Show("button +14 exists"); }
                             
@@ -198,38 +202,12 @@ namespace MineSweeper
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
             //
-            //TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
-            //if (myButton+15.text = " ")
-            //{
-
-            //}
-            //var ClickedButton =(Button[XOutside+1,YOutside+1])sender;//attempt at finding a way to refer to the squares around myButton. 
-            //for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
-            //{
-            //    for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-            //    {
-            //        //Button[x,y]
-            //        if (btn_grid[x, y] == myButton)
-            //        {
-            //            var myButtonP1=btn_grid[x+1,y];
-            //            myButtonP1.BackColor = Color.AliceBlue;
-            //        }
-            //        //
-            //        //btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
-            //        //grid[x, y] = 0;
-            //        //YOutside = y;
-            //        //XOutside = x;
-            //    }
-            //}
-            //            
-            //TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
             //TODO: make squares flagable.
             //            
         }
     }
 }
 //TODO: find out the game logic or algorithm for the real minesweeper game.
-//TODO: detect whether or not the squeres surrounding myButton contain mines, if they do increment a counter that decides myButton's number.
-//TODO: detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
+//TODO: if mine count 0 --> detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
 //TODO: make squares flagable.
 //TODO: make a win message.
