@@ -131,7 +131,7 @@ namespace MineSweeper
                             //if minecountInner=0 remove myButton, surrounding buttons and work out the buttons 
                             //surrounding the surrounding buttons' mine count if one of them is 0 do the same again.
                             //possible solution.                            
-                            if (myButtonP1.Enabled == true) { MessageBox.Show("myButtonP1 exists"); }//can only be true if button exists.
+                            //if (myButtonP1.Enabled == true) { MessageBox.Show("myButtonP1 exists"); }//can only be true if button exists.
                             //for testing only.
                             myButtonP1.BackColor = Color.Orange;
                             myButtonP14.BackColor = Color.Orange;
