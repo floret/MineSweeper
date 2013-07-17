@@ -97,9 +97,7 @@ namespace MineSweeper
         {
 
             var myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
-            //Counts surrounding mines.
-
-            //create surrounding buttons here.
+            //Count Mines:
             //Button[x,y]
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
@@ -207,7 +205,7 @@ namespace MineSweeper
                         {
                             //
                             try//remove if no longer needed.
-                            {//!try statement makes it ignore error, but also stops it from counting.      
+                            {    
                                 var myButtonP1 = btn_grid[x + 1, y];
                                 var myButtonP14 = btn_grid[x - 1, y + 1];
                                 var myButtonP15 = btn_grid[x, y + 1];
@@ -269,7 +267,9 @@ namespace MineSweeper
                     {
                         if(mineCountInner==0)
                         {
-                            myButton.BackColor = Color.Gray; //if the button doesn't contain a mine it becomes green.
+                            myButton.BackColor = Color.Gray;
+                            //TODO: count the mines surrounding the squares that surround myButton.
+                            
                         }
                         else if (mineCountInner == 1)
                         {
