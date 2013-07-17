@@ -108,10 +108,10 @@ namespace MineSweeper
                     if (btn_grid[x, y] == myButton)
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
                         //
-                        if (myButton == btn_grid[0, y]) { MessageBox.Show("left side"); }
-                        else if (myButton == btn_grid[14, y]) { }
-                        else if (myButton == btn_grid[x, 0]) { }
-                        else if (myButton == btn_grid[x, 14]) { }
+                        if (myButton == btn_grid[0, y]) { MessageBox.Show("left side"); }//make it only count surrounding squares that are not on the left side.
+                        else if (myButton == btn_grid[14, y]) { MessageBox.Show("Right side"); }
+                        else if (myButton == btn_grid[x, 0]) { MessageBox.Show("top"); }
+                        else if (myButton == btn_grid[x, 14]) { MessageBox.Show("Bottom"); }
                         else
                         {
                             //
