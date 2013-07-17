@@ -106,8 +106,48 @@ namespace MineSweeper
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {
                     if (btn_grid[x, y] == myButton)
-                    {//!Corner Squares don't work.                        
-                        if (myButton == btn_grid[0, y])
+                    {//!Corner Squares don't work.          
+                        if (myButton == btn_grid[0, 0])
+                        {//top right corner.
+                            var myButtonP1 = btn_grid[x + 1, y];                            
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }                            
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                        }
+                        else if(myButton==btn_grid[0,14])
+                        {//bottom left
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }                            
+                        }
+                        else if(myButton==btn_grid[14,0])
+                        {//top right                            
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myButton == btn_grid[14, 14])
+                        {//bottom left                   
+                            var myButtonM1 = btn_grid[x - 1, y];                            
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonM1.Text == " ") { mineCountInner++; }                            
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myButton == btn_grid[0, y])
                         { //side next to left border.
                             var myButtonP1 = btn_grid[x + 1, y];
                             var myButtonP15 = btn_grid[x, y + 1];
@@ -162,11 +202,11 @@ namespace MineSweeper
                             if (myButtonM14.Text == " ") { mineCountInner++; }
                             if (myButtonM15.Text == " ") { mineCountInner++; }
                             if (myButtonM16.Text == " ") { mineCountInner++; }
-                        }                        
+                        }
                         else
                         {
                             //
-                            try
+                            try//remove if no longer needed.
                             {//!try statement makes it ignore error, but also stops it from counting.      
                                 var myButtonP1 = btn_grid[x + 1, y];
                                 var myButtonP14 = btn_grid[x - 1, y + 1];
@@ -223,13 +263,13 @@ namespace MineSweeper
                         }
                     }
                 }
-                else
+                else//mine not found in myButton
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
                         if(mineCountInner==0)
                         {
-                            myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
+                            myButton.BackColor = Color.Gray; //if the button doesn't contain a mine it becomes green.
                         }
                         else if (mineCountInner == 1)
                         {
