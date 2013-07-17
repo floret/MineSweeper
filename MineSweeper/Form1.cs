@@ -265,11 +265,22 @@ namespace MineSweeper
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
-                        if(mineCountInner==0)
+                        if(mineCountInner==0)//expand and cound surrounding squares' mines.
                         {
                             myButton.BackColor = Color.Gray;
                             //TODO: count the mines surrounding the squares that surround myButton.
-                            
+                            if (mineCountInner==0)
+                            {
+                                 /*
+                                   +----+----+----+                +----+----+----+ 
+                                   |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
+                                   +----+----+----+                +----+----+----+
+                                   |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
+                                   +----+----+----+                +----+----+----+
+                                   |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
+                                   +----+----+----+                +----+----+----+ 
+                                */                                
+                            }
                         }
                         else if (mineCountInner == 1)
                         {
