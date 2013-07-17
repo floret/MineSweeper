@@ -24,7 +24,7 @@ namespace MineSweeper
         /// </summary>
         private Button createButton(int x, int y, int gridX, int gridY)
         {
-            Button btn = new Button();
+            Button btn = new Button();            
             btn.Text = "";                                                      //makes the button display nothing.
             btn.Name = gridX.ToString() + " " + gridY.ToString();               //names the new button its position within the grid.
             btn.Size = new System.Drawing.Size(30, 30);                         //makes the button 30 x 30 pixels big.
@@ -107,7 +107,7 @@ namespace MineSweeper
                 {
                     if (btn_grid[x, y] == myButton)
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
-                        //!Corner Squares don't work.
+                        //!Corner Squares don't work.                        
                         if (myButton == btn_grid[0, y])
                         { //side next to left border.
                             var myButtonP1 = btn_grid[x + 1, y];
@@ -150,7 +150,7 @@ namespace MineSweeper
                             if (myButtonP16.Text == " ") { mineCountInner++; }
                             if (myButtonM1.Text == " ") { mineCountInner++; }
                         }
-                        else if (myButton == btn_grid[x, 14]) 
+                        else if (myButton == btn_grid[x, 14])
                         {//side next to bottom border.
                             var myButtonP1 = btn_grid[x + 1, y];
                             var myButtonM1 = btn_grid[x - 1, y];
@@ -163,7 +163,7 @@ namespace MineSweeper
                             if (myButtonM14.Text == " ") { mineCountInner++; }
                             if (myButtonM15.Text == " ") { mineCountInner++; }
                             if (myButtonM16.Text == " ") { mineCountInner++; }
-                        }
+                        }                        
                         else
                         {
                             //
@@ -191,16 +191,6 @@ namespace MineSweeper
                                 //if minecountInner=0 remove myButton, surrounding buttons and work out the buttons 
                                 //surrounding the surrounding buttons' mine count if one of them is 0 do the same again.
                                 //for testing only.
-                                myButtonP1.BackColor = Color.Orange;
-                                myButtonP14.BackColor = Color.Orange;
-                                myButtonP15.BackColor = Color.Orange;
-                                myButtonP16.BackColor = Color.Orange;
-
-                                myButtonM1.BackColor = Color.Orange;
-                                myButtonM14.BackColor = Color.Orange;
-                                myButtonM15.BackColor = Color.Orange;
-                                myButtonM16.BackColor = Color.Orange;
-                                //
                                 if (myButtonP1.Text == " ") { mineCountInner++; }
                                 if (myButtonP14.Text == " ") { mineCountInner++; }
                                 if (myButtonP15.Text == " ") { mineCountInner++; }
@@ -210,11 +200,10 @@ namespace MineSweeper
                                 if (myButtonM14.Text == " ") { mineCountInner++; }
                                 if (myButtonM15.Text == " ") { mineCountInner++; }
                                 if (myButtonM16.Text == " ") { mineCountInner++; }
-
                             }
                             catch
                             {
-
+                                //see if errors occur.
                             }
                         }
                     }
@@ -237,11 +226,52 @@ namespace MineSweeper
                 }
                 else
                 {
-                    if (GOFlag == 0)
+                    if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
-                        myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
-                        myButton.ForeColor = Color.Blue;
-                        myButton.Text = mineCountInner.ToString();
+                        if(mineCountInner==0)
+                        {
+                            myButton.BackColor = Color.Green; //if the button doesn't contain a mine it becomes green.
+                        }
+                        else if (mineCountInner == 1)
+                        {
+                            myButton.Text = "1";
+                            myButton.ForeColor = Color.Green;
+                        }
+                        else if (mineCountInner == 2)
+                        {
+                            myButton.Text = "2";
+                            myButton.ForeColor = Color.Blue;
+                        }
+                        else if (mineCountInner == 3)
+                        {
+                            myButton.Text = "3";
+                            myButton.ForeColor = Color.Red;
+                        }
+                        else if (mineCountInner == 4)
+                        {
+                            myButton.Text = "4";
+                            myButton.ForeColor = Color.DarkBlue;
+                        }
+                        else if (mineCountInner == 5)
+                        {
+                            myButton.Text = "5";
+                            myButton.ForeColor = Color.Orange;//find out colors from here on up.
+                        }
+                        else if (mineCountInner == 6)
+                        {
+                            myButton.Text = "6";
+                            myButton.ForeColor = Color.LightBlue;
+                        }
+                        else if (mineCountInner == 7)
+                        {
+                            myButton.Text = "7";
+                            myButton.ForeColor = Color.LightCyan;
+                        }
+                        else if (mineCountInner == 8)
+                        {
+                            myButton.Text = "8";
+                            myButton.ForeColor = Color.White;
+                        }
                         mineCountInner = 0;
                     }
                 }
