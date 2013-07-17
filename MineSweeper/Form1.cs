@@ -342,3 +342,4 @@ namespace MineSweeper
 //TODO: make squares flagable.
 //TODO: make a win message.
 //TODO: Shorten code by removing redundancy.
+//TODO: make different difficulty settings.
