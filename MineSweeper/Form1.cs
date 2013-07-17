@@ -106,8 +106,7 @@ namespace MineSweeper
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {
                     if (btn_grid[x, y] == myButton)
-                    {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
-                        //!Corner Squares don't work.                        
+                    {//!Corner Squares don't work.                        
                         if (myButton == btn_grid[0, y])
                         { //side next to left border.
                             var myButtonP1 = btn_grid[x + 1, y];
@@ -236,41 +235,49 @@ namespace MineSweeper
                         {
                             myButton.Text = "1";
                             myButton.ForeColor = Color.Green;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 2)
                         {
                             myButton.Text = "2";
                             myButton.ForeColor = Color.Blue;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 3)
                         {
                             myButton.Text = "3";
                             myButton.ForeColor = Color.Red;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 4)
                         {
                             myButton.Text = "4";
                             myButton.ForeColor = Color.DarkBlue;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 5)
                         {
                             myButton.Text = "5";
                             myButton.ForeColor = Color.Orange;//find out colors from here on up.
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 6)
                         {
                             myButton.Text = "6";
                             myButton.ForeColor = Color.LightBlue;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 7)
                         {
                             myButton.Text = "7";
-                            myButton.ForeColor = Color.LightCyan;
+                            myButton.ForeColor = Color.Cyan;
+                            myButton.BackColor = Color.LightGray;
                         }
                         else if (mineCountInner == 8)
                         {
                             myButton.Text = "8";
                             myButton.ForeColor = Color.White;
+                            myButton.BackColor = Color.LightGray;
                         }
                         mineCountInner = 0;
                     }
