@@ -107,17 +107,68 @@ namespace MineSweeper
                 {
                     if (btn_grid[x, y] == myButton)
                     {//!squares along the sides can't be clicked because they don't have all the surrounding squares. 
-                        //
-                        if (myButton == btn_grid[0, y]) { MessageBox.Show("left side"); }//make it only count surrounding squares that are not on the left side.
-                        else if (myButton == btn_grid[14, y]) { MessageBox.Show("Right side"); }
-                        else if (myButton == btn_grid[x, 0]) { MessageBox.Show("top"); }
-                        else if (myButton == btn_grid[x, 14]) { MessageBox.Show("Bottom"); }
+                        //!Corner Squares don't work.
+                        if (myButton == btn_grid[0, y])
+                        { //side next to left border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            //
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myButton == btn_grid[14, y])
+                        {//side next to right border.                           
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myButton == btn_grid[x, 0])
+                        {//side next to the top border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myButton == btn_grid[x, 14]) 
+                        {//side next to bottom border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
                         else
                         {
                             //
                             try
                             {//!try statement makes it ignore error, but also stops it from counting.      
-
                                 var myButtonP1 = btn_grid[x + 1, y];
                                 var myButtonP14 = btn_grid[x - 1, y + 1];
                                 var myButtonP15 = btn_grid[x, y + 1];
@@ -139,8 +190,6 @@ namespace MineSweeper
                                 //
                                 //if minecountInner=0 remove myButton, surrounding buttons and work out the buttons 
                                 //surrounding the surrounding buttons' mine count if one of them is 0 do the same again.
-                                //possible solution.                            
-                                //if (myButtonP1.Enabled == true) { MessageBox.Show("myButtonP1 exists"); }//can only be true if button exists.
                                 //for testing only.
                                 myButtonP1.BackColor = Color.Orange;
                                 myButtonP14.BackColor = Color.Orange;
