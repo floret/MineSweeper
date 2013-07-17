@@ -338,7 +338,7 @@ namespace MineSweeper
         }
     }
 }
-//TODO: find out the game logic or algorithm for the real minesweeper game.
 //TODO: if mine count 0 --> detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
 //TODO: make squares flagable.
 //TODO: make a win message.
+//TODO: Shorten code by removing redundancy.
