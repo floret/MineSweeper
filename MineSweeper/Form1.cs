@@ -280,7 +280,8 @@ namespace MineSweeper
                                    +----+----+----+                +----+----+----+
                                    |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
                                    +----+----+----+                +----+----+----+ 
-                                */                                
+                                */      
+                          
                             }
                         }
                         else if (mineCountInner == 1)
@@ -348,9 +349,15 @@ namespace MineSweeper
             //TODO: make squares flagable.
             //foreach (Button btn in btn_grid)
             //{
-            //    btn.Click += new EventHandler(MineClickedOrNot);                //make right click.
+            //    btn.MouseWheel += new MouseEventHandler(FlagMine);                //make right click.
+            //}
+        
+            //private void FlagMine(object sender, EventArgs e)//for when the user flags a mine.
+            //{
+            //    //if mine is flagged, decrease mine count.
             //}
             //            
+
         }
     }
 }
