@@ -374,8 +374,8 @@ namespace MineSweeper
 
                                                 //var p1m1 = btn_grid[x - 1, y];
                                                 var p1m14 = btn_grid[x + 2, y - 1];
-                                                var p1m15 = btn_grid[x+1, y - 1];
-                                                var p1m16 = btn_grid[x , y - 1];
+                                                var p1m15 = btn_grid[x + 1, y - 1];
+                                                var p1m16 = btn_grid[x, y - 1];
 
                                                 int mineOuterCounterP1 = 0;
                                                 if (p1p1.Text == " ") { mineOuterCounterP1++; }
@@ -392,19 +392,19 @@ namespace MineSweeper
                                                     myButtonP1.Text = mineOuterCounterP1.ToString();//!always 0
                                                 }
                                             }
-                                            var myButtonP14=btn_grid[x-1,y+1];
+                                            var myButtonP14 = btn_grid[x - 1, y + 1];
                                             //p14
                                             if (myButtonP14 == btn_grid[x - 1, y + 1])
                                             {
-                                                var p14p1 = btn_grid[x , y+1];
-                                                var p14p14 = btn_grid[x-2, y +2];
-                                                var p14p15 = btn_grid[x -1, y +2];
-                                                var p14p16 = btn_grid[x , y + 2];
+                                                var p14p1 = btn_grid[x, y + 1];
+                                                var p14p14 = btn_grid[x - 2, y + 2];
+                                                var p14p15 = btn_grid[x - 1, y + 2];
+                                                var p14p16 = btn_grid[x, y + 2];
 
-                                                var p14m1 = btn_grid[x -2, y+1];
+                                                var p14m1 = btn_grid[x - 2, y + 1];
                                                 //var p14m14 = btn_grid[x + 2, y - 1];
-                                                var p14m15 = btn_grid[x -1, y +1];
-                                                var p14m16 = btn_grid[x-2, y];
+                                                var p14m15 = btn_grid[x - 1, y + 1];
+                                                var p14m16 = btn_grid[x - 2, y];
 
                                                 int mineOuterCounterP14 = 0;
                                                 if (p14p1.Text == " ") { mineOuterCounterP14++; }
@@ -412,7 +412,7 @@ namespace MineSweeper
                                                 if (p14p15.Text == " ") { mineOuterCounterP14++; }
                                                 if (p14p16.Text == " ") { mineOuterCounterP14++; }
 
-                                                 if (p14m1.Text == " ") { mineOuterCounterP14++; }
+                                                if (p14m1.Text == " ") { mineOuterCounterP14++; }
                                                 //if (p14m14.Text == " ") { mineOuterCounterP1++; }
                                                 if (p14m15.Text == " ") { mineOuterCounterP14++; }
                                                 if (p14m16.Text == " ") { mineOuterCounterP14++; }
@@ -421,17 +421,17 @@ namespace MineSweeper
                                                     myButtonP14.Text = mineOuterCounterP14.ToString();//!always 0
                                                 }
                                             }
-                                            var myButtonP15 = btn_grid[x , y + 1];
+                                            var myButtonP15 = btn_grid[x, y + 1];
                                             //p15
-                                            if (myButtonP15 == btn_grid[x , y + 1])
+                                            if (myButtonP15 == btn_grid[x, y + 1])
                                             {
-                                                var p15p1 = btn_grid[x+1, y + 1];
+                                                var p15p1 = btn_grid[x + 1, y + 1];
                                                 var p15p14 = btn_grid[x - 1, y + 2];
-                                                var p15p15 = btn_grid[x , y + 2];
-                                                var p15p16 = btn_grid[x+1, y + 2];
+                                                var p15p15 = btn_grid[x, y + 2];
+                                                var p15p16 = btn_grid[x + 1, y + 2];
 
                                                 var p15m1 = btn_grid[x - 1, y + 1];
-                                                var p15m14 = btn_grid[x + 1, y ];
+                                                var p15m14 = btn_grid[x + 1, y];
                                                 //var p15m15 = btn_grid[x - 1, y + 1];
                                                 var p15m16 = btn_grid[x - 1, y];
 
@@ -450,33 +450,91 @@ namespace MineSweeper
                                                     myButtonP15.Text = mineOuterCounterP15.ToString();//!always 0
                                                 }
                                             }
-                                            var myButtonP16 = btn_grid[x, y + 1];//start by getting the grid right.
+                                            var myButtonP16 = btn_grid[x + 1, y + 1];//start by getting the grid right.
                                             //p16
-                                            if (myButtonP16 == btn_grid[x, y + 1])
+                                            if (myButtonP16 == btn_grid[x + 1, y + 1])
                                             {
-                                                var p15p1 = btn_grid[x + 1, y + 1];
-                                                var p15p14 = btn_grid[x - 1, y + 2];
-                                                var p15p15 = btn_grid[x, y + 2];
-                                                var p15p16 = btn_grid[x + 1, y + 2];
+                                                var p16p1 = btn_grid[x + 2, y + 1];
+                                                var p16p14 = btn_grid[x , y + 2];
+                                                var p16p15 = btn_grid[x+1, y + 2];
+                                                var p16p16 = btn_grid[x + 2, y + 2];
 
-                                                var p15m1 = btn_grid[x - 1, y + 1];
-                                                var p15m14 = btn_grid[x + 1, y];
-                                                var p15m15 = btn_grid[x - 1, y + 1];
-                                                var p15m16 = btn_grid[x - 1, y];
+                                                var p16m1 = btn_grid[x , y + 1];
+                                                var p16m14 = btn_grid[x + 2, y];
+                                                var p16m15 = btn_grid[x + 1, y ];
+                                                //var p16m16 = btn_grid[x - 1, y];
 
                                                 int mineOuterCounterP16 = 0;
-                                                if (p15p1.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15p14.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15p15.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15p16.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16p1.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16p14.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16p15.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16p16.Text == " ") { mineOuterCounterP16++; }
 
-                                                if (p15m1.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15m14.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15m15.Text == " ") { mineOuterCounterP16++; }
-                                                if (p15m16.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16m1.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16m14.Text == " ") { mineOuterCounterP16++; }
+                                                if (p16m15.Text == " ") { mineOuterCounterP16++; }
+                                                //if (p16m16.Text == " ") { mineOuterCounterP16++; }
                                                 if (mineOuterCounterP16 != 0)
                                                 {
-                                                    myButtonP15.Text = mineOuterCounterP16.ToString();//!always 0
+                                                    myButtonP16.Text = mineOuterCounterP16.ToString();
+                                                }
+                                            }
+                                            var myButtonM1 = btn_grid[x -1, y ];
+                                            //m1
+                                            if (myButtonM1 == btn_grid[x -1, y ])
+                                            {
+                                                //var m1p1 = btn_grid[x + 2, y + 1];
+                                                var m1p14 = btn_grid[x-2, y + 1];
+                                                var m1p15 = btn_grid[x -1, y + 1];
+                                                var m1p16 = btn_grid[x , y + 1];
+
+                                                var m1m1 = btn_grid[x-2, y ];
+                                                var m1m14 = btn_grid[x , y-1];
+                                                var m1m15 = btn_grid[x - 1, y-1];
+                                                var m1m16 = btn_grid[x - 2, y-1];
+
+                                                int mineOuterCounterM1 = 0;
+                                                //if (m1p1.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1p14.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1p15.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1p16.Text == " ") { mineOuterCounterM1++; }
+
+                                                if (m1m1.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1m14.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1m15.Text == " ") { mineOuterCounterM1++; }
+                                                if (m1m16.Text == " ") { mineOuterCounterM1++; }
+                                                if (mineOuterCounterM1 != 0)
+                                                {
+                                                    myButtonM1.Text = mineOuterCounterM1.ToString();
+                                                }
+                                            }
+                                            var myButtonM14 = btn_grid[x +1, y-1];
+                                            //m14
+                                            if (myButtonM14 == btn_grid[x +1, y-1])
+                                            {
+                                                var m14p1 = btn_grid[x +2, y - 1];
+                                                //var m14p14 = btn_grid[x - 2, y + 1];
+                                                var m14p15 = btn_grid[x + 1, y ];
+                                                var m14p16 = btn_grid[x+2, y ];
+
+                                                var m14m1 = btn_grid[x , y-1];
+                                                var m14m14 = btn_grid[x+2, y -2];
+                                                var m14m15 = btn_grid[x +1, y -2];
+                                                var m14m16 = btn_grid[x , y - 2];
+
+                                                int mineOuterCounterM14 = 0;
+                                                if (m14p1.Text == " ") { mineOuterCounterM14++; }
+                                                //if (m14p14.Text == " ") { mineOuterCounterM14++; }
+                                                if (m14p15.Text == " ") { mineOuterCounterM14++; }
+                                                if (m14p16.Text == " ") { mineOuterCounterM14++; }
+
+                                                if (m14m1.Text == " ") { mineOuterCounterM14++; }
+                                                if (m14m14.Text == " ") { mineOuterCounterM14++; }
+                                                if (m14m15.Text == " ") { mineOuterCounterM14++; }
+                                                if (m14m16.Text == " ") { mineOuterCounterM14++; }
+                                                if (mineOuterCounterM14 != 0)
+                                                {
+                                                    myButtonM14.Text = mineOuterCounterM14.ToString();
                                                 }
                                             }
                                         }
