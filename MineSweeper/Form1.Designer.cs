@@ -30,6 +30,7 @@
         {
             this.btnStart = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMineCount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnStart
@@ -49,17 +50,28 @@
             this.panel1.Size = new System.Drawing.Size(386, 381);
             this.panel1.TabIndex = 1;
             // 
+            // lblMineCount
+            // 
+            this.lblMineCount.AutoSize = true;
+            this.lblMineCount.Location = new System.Drawing.Point(283, 19);
+            this.lblMineCount.Name = "lblMineCount";
+            this.lblMineCount.Size = new System.Drawing.Size(62, 13);
+            this.lblMineCount.TabIndex = 2;
+            this.lblMineCount.Text = "Mines Left: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 441);
+            this.Controls.Add(this.lblMineCount);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnStart);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MineSweeper";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -67,6 +79,7 @@
 
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblMineCount;
     }
 }
 

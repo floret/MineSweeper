@@ -80,12 +80,13 @@ namespace MineSweeper
                     mineYOutside = mineY;
                 }
             }
-            while (mineCount != 70);
+            while (mineCount != 40);//70
 
             foreach (Button btn in btn_grid)
             {
                 btn.Click += new EventHandler(MineClickedOrNot);                //click event handler for the grid of buttons.
             }
+            lblMineCount.Text = "Mines Left: "+mineCount.ToString();//displays the amount of mines that are left.
         }
         int mineCountInner = 0;
         /// <summary>
@@ -345,6 +346,10 @@ namespace MineSweeper
             }
             //
             //TODO: make squares flagable.
+            //foreach (Button btn in btn_grid)
+            //{
+            //    btn.Click += new EventHandler(MineClickedOrNot);                //make right click.
+            //}
             //            
         }
     }
