@@ -89,7 +89,7 @@ namespace MineSweeper
             lblMineCount.Text = "Mines Left: " + mineCount.ToString();//displays the amount of mines that are left.
         }
 
-        
+
         /// <summary>
         /// When the user clicks on a button in the button grid, this method checks whether it contains a
         /// mine or not, if it does it changes the colour of the button to red and reveils the location of 
@@ -222,7 +222,7 @@ namespace MineSweeper
                                 +----+----+----+                +----+----+----+
                                 |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
                                 +----+----+----+                +----+----+----+ 
-                            */                            
+                            */
                             if (myButtonP1.Text == " ") { mineCountInner++; }
                             if (myButtonP14.Text == " ") { mineCountInner++; }
                             if (myButtonP15.Text == " ") { mineCountInner++; }
@@ -253,26 +253,247 @@ namespace MineSweeper
                     }
                 }
                 else//mine not found in myButton
-                {//********************************************************************************************
+                {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
                         if (mineCountInner == 0)//expand and count surrounding squares' mines.
                         {
                             myButton.BackColor = Color.Gray;
-                            //TODO: count the mines surrounding the squares that surround myButton.
-                            if (mineCountInner == 0)
+                            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
                             {
-                                /*
-                                  +----+----+----+                +----+----+----+ 
-                                  |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
-                                  +----+----+----+                +----+----+----+
-                                  |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
-                                  +----+----+----+                +----+----+----+
-                                  |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
-                                  +----+----+----+                +----+----+----+ 
-                               */
+                                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                                {
+                                    if (btn_grid[x, y] == myButton)
+                                    {
+                                        if (myButton == btn_grid[0, 0])
+                                        {//top right corner.
+                                            //var myButtonP1 = btn_grid[x + 1, y];
+                                            //var myButtonP15 = btn_grid[x, y + 1];
+                                            //var myButtonP16 = btn_grid[x + 1, y + 1];
 
+                                            //if (myButtonP1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP16.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[0, 14])
+                                        {//bottom left
+                                            //var myButtonP1 = btn_grid[x + 1, y];
+                                            //var myButtonM14 = btn_grid[x + 1, y - 1];
+                                            //var myButtonM15 = btn_grid[x, y - 1];
+
+                                            //if (myButtonP1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM15.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[14, 0])
+                                        {//top right                            
+                                            //var myButtonP14 = btn_grid[x - 1, y + 1];
+                                            //var myButtonP15 = btn_grid[x, y + 1];
+                                            //var myButtonM1 = btn_grid[x - 1, y];
+
+                                            //if (myButtonP14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM1.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[14, 14])
+                                        {//bottom left                   
+                                            //var myButtonM1 = btn_grid[x - 1, y];
+                                            //var myButtonM15 = btn_grid[x, y - 1];
+                                            //var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                                            //if (myButtonM1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM16.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[0, y])
+                                        { //side next to left border.
+                                            //var myButtonP1 = btn_grid[x + 1, y];
+                                            //var myButtonP15 = btn_grid[x, y + 1];
+                                            //var myButtonP16 = btn_grid[x + 1, y + 1];
+                                            //var myButtonM14 = btn_grid[x + 1, y - 1];
+                                            //var myButtonM15 = btn_grid[x, y - 1];
+                                            ////
+                                            //if (myButtonP1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP16.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM15.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[14, y])
+                                        {//side next to right border.                           
+                                            //var myButtonP14 = btn_grid[x - 1, y + 1];
+                                            //var myButtonP15 = btn_grid[x, y + 1];
+                                            //var myButtonM1 = btn_grid[x - 1, y];
+                                            //var myButtonM15 = btn_grid[x, y - 1];
+                                            //var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                                            //if (myButtonP14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM16.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[x, 0])
+                                        {//side next to the top border.
+                                            //var myButtonP1 = btn_grid[x + 1, y];
+                                            //var myButtonP14 = btn_grid[x - 1, y + 1];
+                                            //var myButtonP15 = btn_grid[x, y + 1];
+                                            //var myButtonP16 = btn_grid[x + 1, y + 1];
+                                            //var myButtonM1 = btn_grid[x - 1, y];
+
+                                            //if (myButtonP1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonP16.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM1.Text == " ") { mineCountInner++; }
+                                        }
+                                        else if (myButton == btn_grid[x, 14])
+                                        {//side next to bottom border.
+                                            //var myButtonP1 = btn_grid[x + 1, y];
+                                            //var myButtonM1 = btn_grid[x - 1, y];
+                                            //var myButtonM14 = btn_grid[x + 1, y - 1];
+                                            //var myButtonM15 = btn_grid[x, y - 1];
+                                            //var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                                            //if (myButtonP1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM1.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM14.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM15.Text == " ") { mineCountInner++; }
+                                            //if (myButtonM16.Text == " ") { mineCountInner++; }
+                                        }
+                                        else
+                                        {//Squares not next to a border.
+                                            var myButtonP1 = btn_grid[x + 1, y];//in relation to myButton
+                                            //p1
+                                            if (myButtonP1 == btn_grid[x + 1, y])
+                                            {
+                                                var p1p1 = btn_grid[x + 2, y];//x+1
+                                                var p1p14 = btn_grid[x, y + 1];//x-1
+                                                var p1p15 = btn_grid[x + 1, y + 1];//x
+                                                var p1p16 = btn_grid[x + 2, y + 1];//x+1
+
+                                                //var p1m1 = btn_grid[x - 1, y];
+                                                var p1m14 = btn_grid[x + 2, y - 1];
+                                                var p1m15 = btn_grid[x+1, y - 1];
+                                                var p1m16 = btn_grid[x , y - 1];
+
+                                                int mineOuterCounterP1 = 0;
+                                                if (p1p1.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1p14.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1p15.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1p16.Text == " ") { mineOuterCounterP1++; }
+
+                                                // if (p1m1.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1m14.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1m15.Text == " ") { mineOuterCounterP1++; }
+                                                if (p1m16.Text == " ") { mineOuterCounterP1++; }
+                                                if (mineOuterCounterP1 != 0)
+                                                {
+                                                    myButtonP1.Text = mineOuterCounterP1.ToString();//!always 0
+                                                }
+                                            }
+                                            var myButtonP14=btn_grid[x-1,y+1];
+                                            //p14
+                                            if (myButtonP14 == btn_grid[x - 1, y + 1])
+                                            {
+                                                var p14p1 = btn_grid[x , y+1];
+                                                var p14p14 = btn_grid[x-2, y +2];
+                                                var p14p15 = btn_grid[x -1, y +2];
+                                                var p14p16 = btn_grid[x , y + 2];
+
+                                                var p14m1 = btn_grid[x -2, y+1];
+                                                //var p14m14 = btn_grid[x + 2, y - 1];
+                                                var p14m15 = btn_grid[x -1, y +1];
+                                                var p14m16 = btn_grid[x-2, y];
+
+                                                int mineOuterCounterP14 = 0;
+                                                if (p14p1.Text == " ") { mineOuterCounterP14++; }
+                                                if (p14p14.Text == " ") { mineOuterCounterP14++; }
+                                                if (p14p15.Text == " ") { mineOuterCounterP14++; }
+                                                if (p14p16.Text == " ") { mineOuterCounterP14++; }
+
+                                                 if (p14m1.Text == " ") { mineOuterCounterP14++; }
+                                                //if (p14m14.Text == " ") { mineOuterCounterP1++; }
+                                                if (p14m15.Text == " ") { mineOuterCounterP14++; }
+                                                if (p14m16.Text == " ") { mineOuterCounterP14++; }
+                                                if (mineOuterCounterP14 != 0)
+                                                {
+                                                    myButtonP14.Text = mineOuterCounterP14.ToString();//!always 0
+                                                }
+                                            }
+                                            var myButtonP15 = btn_grid[x , y + 1];
+                                            //p15
+                                            if (myButtonP15 == btn_grid[x , y + 1])
+                                            {
+                                                var p15p1 = btn_grid[x+1, y + 1];
+                                                var p15p14 = btn_grid[x - 1, y + 2];
+                                                var p15p15 = btn_grid[x , y + 2];
+                                                var p15p16 = btn_grid[x+1, y + 2];
+
+                                                var p15m1 = btn_grid[x - 1, y + 1];
+                                                var p15m14 = btn_grid[x + 1, y ];
+                                                //var p15m15 = btn_grid[x - 1, y + 1];
+                                                var p15m16 = btn_grid[x - 1, y];
+
+                                                int mineOuterCounterP15 = 0;
+                                                if (p15p1.Text == " ") { mineOuterCounterP15++; }
+                                                if (p15p14.Text == " ") { mineOuterCounterP15++; }
+                                                if (p15p15.Text == " ") { mineOuterCounterP15++; }
+                                                if (p15p16.Text == " ") { mineOuterCounterP15++; }
+
+                                                if (p15m1.Text == " ") { mineOuterCounterP15++; }
+                                                if (p15m14.Text == " ") { mineOuterCounterP15++; }
+                                                //if (p15m15.Text == " ") { mineOuterCounterP15++; }
+                                                if (p15m16.Text == " ") { mineOuterCounterP15++; }
+                                                if (mineOuterCounterP15 != 0)
+                                                {
+                                                    myButtonP15.Text = mineOuterCounterP15.ToString();//!always 0
+                                                }
+                                            }
+                                            var myButtonP16 = btn_grid[x, y + 1];//start by getting the grid right.
+                                            //p16
+                                            if (myButtonP16 == btn_grid[x, y + 1])
+                                            {
+                                                var p15p1 = btn_grid[x + 1, y + 1];
+                                                var p15p14 = btn_grid[x - 1, y + 2];
+                                                var p15p15 = btn_grid[x, y + 2];
+                                                var p15p16 = btn_grid[x + 1, y + 2];
+
+                                                var p15m1 = btn_grid[x - 1, y + 1];
+                                                var p15m14 = btn_grid[x + 1, y];
+                                                var p15m15 = btn_grid[x - 1, y + 1];
+                                                var p15m16 = btn_grid[x - 1, y];
+
+                                                int mineOuterCounterP16 = 0;
+                                                if (p15p1.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15p14.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15p15.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15p16.Text == " ") { mineOuterCounterP16++; }
+
+                                                if (p15m1.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15m14.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15m15.Text == " ") { mineOuterCounterP16++; }
+                                                if (p15m16.Text == " ") { mineOuterCounterP16++; }
+                                                if (mineOuterCounterP16 != 0)
+                                                {
+                                                    myButtonP15.Text = mineOuterCounterP16.ToString();//!always 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
+                            //TODO: count the mines surrounding the squares that surround myButton.
+
+                            /*
+                              +----+----+----+                +----+----+----+ 
+                              |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
+                              +----+----+----+                +----+----+----+
+                              |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
+                              +----+----+----+                +----+----+----+
+                              |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
+                              +----+----+----+                +----+----+----+ 
+                           */
                         }
                         else if (mineCountInner == 1)
                         {
@@ -339,16 +560,25 @@ namespace MineSweeper
             //TODO: make squares flagable.
             //foreach (Button btn in btn_grid)
             //{
-            //    btn.MouseWheel += new MouseEventHandler(FlagMine);                //make right click.
+            //    btn.Click += new MouseEventHandler(FlagMine);                //make right click.
             //}
 
             //private void FlagMine(object sender, EventArgs e)//for when the user flags a mine.
             //{
             //    //if mine is flagged, decrease mine count.
             //}
-            //            
 
+            //            
         }
+        //
+        //private void FlagMine(object sender, MouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Right)
+        //    {
+
+        //    }
+        //}
+        //
     }
 }
 //TODO: if mine count 0 --> detect whether or not the squares surrounding the squares that surround mybutton contain mines, if they do increment their counters.
