@@ -537,12 +537,68 @@ namespace MineSweeper
                                                     myButtonM14.Text = mineOuterCounterM14.ToString();
                                                 }
                                             }
+                                            var myButtonM15 = btn_grid[x, y - 1];
+                                            //m15
+                                            if (myButtonM15 == btn_grid[x , y - 1])
+                                            {
+                                                var m15p1 = btn_grid[x + 1, y - 1];
+                                                var m15p14 = btn_grid[x - 1, y ];
+                                                //var m15p15 = btn_grid[x + 1, y];
+                                                var m15p16 = btn_grid[x + 1, y+1];
+
+                                                var m15m1 = btn_grid[x-1, y - 1];
+                                                var m15m14 = btn_grid[x + 1, y - 2];
+                                                var m15m15 = btn_grid[x , y - 2];
+                                                var m15m16 = btn_grid[x-1, y - 2];
+
+                                                int mineOuterCounterM15 = 0;
+                                                if (m15p1.Text == " ") { mineOuterCounterM15++; }
+                                                if (m15p14.Text == " ") { mineOuterCounterM15++; }
+                                                //if (m15p15.Text == " ") { mineOuterCounterM15++; }
+                                                if (m15p16.Text == " ") { mineOuterCounterM15++; }
+
+                                                if (m15m1.Text == " ") { mineOuterCounterM15++; }
+                                                if (m15m14.Text == " ") { mineOuterCounterM15++; }
+                                                if (m15m15.Text == " ") { mineOuterCounterM15++; }
+                                                if (m15m16.Text == " ") { mineOuterCounterM15++; }
+                                                if (mineOuterCounterM15 != 0)
+                                                {
+                                                    myButtonM15.Text = mineOuterCounterM15.ToString();
+                                                }
+                                            }
+                                            var myButtonM16 = btn_grid[x -1, y - 1];
+                                            //m16
+                                            if (myButtonM16 == btn_grid[x - 1, y - 1])
+                                            {
+                                                var m16p1 = btn_grid[x , y - 1];
+                                                var m16p14 = btn_grid[x - 2, y ];//
+                                                var m16p15 = btn_grid[x - 1, y];
+                                                //var m16p16 = btn_grid[x + 2, y];
+
+                                                var m16m1 = btn_grid[x-2, y - 1];
+                                                var m16m14 = btn_grid[x, y - 2];
+                                                var m16m15 = btn_grid[x - 1, y - 2];
+                                                var m16m16 = btn_grid[x-2, y - 2];
+
+                                                int mineOuterCounterM16 = 0;
+                                                if (m16p1.Text == " ") { mineOuterCounterM16++; }
+                                                if (m16p14.Text == " ") { mineOuterCounterM16++; }
+                                                if (m16p15.Text == " ") { mineOuterCounterM16++; }
+                                                //if (m16p16.Text == " ") { mineOuterCounterM16++; }
+
+                                                if (m16m1.Text == " ") { mineOuterCounterM16++; }
+                                                if (m16m14.Text == " ") { mineOuterCounterM16++; }
+                                                if (m16m15.Text == " ") { mineOuterCounterM16++; }
+                                                if (m16m16.Text == " ") { mineOuterCounterM16++; }
+                                                if (mineOuterCounterM16 != 0)
+                                                {
+                                                    myButtonM16.Text = mineOuterCounterM16.ToString();
+                                                }
+                                            }
                                         }
                                     }
                                 }
                             }
-                            //TODO: count the mines surrounding the squares that surround myButton.
-
                             /*
                               +----+----+----+                +----+----+----+ 
                               |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
