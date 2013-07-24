@@ -17,7 +17,7 @@ namespace MineSweeper
             InitializeComponent();
         }
         //Custom exeptions.
-        class exMineFound : System.Exception { }//Stops the buttons from becoming green after a mine is found.        
+        class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.        
         CNumbers Numbers = new CNumbers();
         /// <summary>
         /// creates a grid of buttons that serves as the game "field".
@@ -63,7 +63,7 @@ namespace MineSweeper
                 }
             }
             //Add mines.
-            Random rand = new Random();                                          //creates a random (variable?)
+            Random rand = new Random();                                          //creates a random (variable?) for the placement of the mines.
             int mineCount = 0;
             do
             {
@@ -99,6 +99,7 @@ namespace MineSweeper
         private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
         {
             Button myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+
             //Count Mines:
             mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.
             //Checks for mines in myButton
@@ -120,7 +121,16 @@ namespace MineSweeper
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
-                        Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that decides what color to make myButton's fore- and backcolor                       
+                        //
+                        if (mineCountInner == 0)
+                        {
+                            //call the surrounding button count class method here to count the surrounding surrounding buttons.
+                        }
+                        else
+                        {
+                            Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that decides what color to make myButton's fore- and backcolor 
+                        }
+                        //                                              
                         mineCountInner = 0;
                     }
                 }
