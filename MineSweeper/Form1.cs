@@ -100,7 +100,7 @@ namespace MineSweeper
         {
             Button myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
             //Count Mines:
-            mineCountInner = Numbers.MineCount(myButton, btn_grid);
+            mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.
             //Checks for mines in myButton
             try//mine found in myButton
             {
@@ -120,7 +120,7 @@ namespace MineSweeper
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
-                        Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that counts the number of mines that surround myButton.                        
+                        Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that decides what color to make myButton's fore- and backcolor                       
                         mineCountInner = 0;
                     }
                 }

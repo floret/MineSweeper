@@ -16,6 +16,7 @@ namespace MineSweeper
         }
 
         CSurroundCount SurroundCount = new CSurroundCount();
+
         /// <summary>
         /// Decides which fore- and backcolor to make the selected 
         /// button and what number to display as it's text.
@@ -78,7 +79,7 @@ namespace MineSweeper
         }
 
         int mineCountInner = 0;
-        Button[,] btn_grid;//too lazy to change all the names.
+        Button[,] btn_grid;
         Button myButton;
 
         /// <summary>
