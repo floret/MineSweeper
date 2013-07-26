@@ -7,7 +7,7 @@ using System.Windows.Forms;//needed for button.
 
 namespace MineSweeper
 {
-    class CSurroundCount:CNumbers
+    class CSurroundCount:CNumbers//uses numbers a lot.
     {
         public CSurroundCount()
         {
@@ -18,16 +18,13 @@ namespace MineSweeper
         {
             myButton = myBtn;
             btn_grid = btnGrd;
-            //myBtn = myButton;
             //write some kind of if statement that checs for m or p buttons that are 0 and call this class with them as myBtn.
-            //find and create surrounding buttons based on myButton.
-            //call from Cnumbers.mineCount.
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
                 {
                     if (btn_grid[x, y] == myButton)
-                    {
+                    {//add blocks for two away from the border.
                         if (myButton == btn_grid[0, 0])
                         {//top right corner.
                             //var myButtonP1 = btn_grid[x + 1, y];
@@ -216,7 +213,7 @@ namespace MineSweeper
                                     DisplayCount(mineOuterCounterP15, myButtonP15);
                                 }
                             }
-                            var myButtonP16 = btn_grid[x + 1, y + 1];//start by getting the grid right.
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
                             //p16
                             if (myButtonP16 == btn_grid[x + 1, y + 1])
                             {
@@ -363,23 +360,13 @@ namespace MineSweeper
                                 if (mineOuterCounterM16 != 0)
                                 {
                                     myButtonM16.Text = mineOuterCounterM16.ToString();
-                                    DisplayCount(mineOuterCounterM16, myButtonM16);     //doing it like this works.                               
+                                    DisplayCount(mineOuterCounterM16, myButtonM16);  
                                 }
                             }
                         }
                     }
                 }
             }
-            /*
-              +----+----+----+                +----+----+----+ 
-              |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
-              +----+----+----+                +----+----+----+
-              |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
-              +----+----+----+                +----+----+----+
-              |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
-              +----+----+----+                +----+----+----+ 
-           */
-            
         }
 
         Button[,] btn_grid;
@@ -390,6 +377,13 @@ namespace MineSweeper
         /// made to be called when no mines surround myButton and the 
         /// mines surrounding the buttons surrounding myButton need to 
         /// be counted.
+        /// +----+----+----+                +----+----+----+ 
+        /// |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
+        /// +----+----+----+                +----+----+----+
+        /// |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
+        /// +----+----+----+                +----+----+----+
+        /// |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
+        /// +----+----+----+                +----+----+----+ 
         /// </summary>
         public void Count(Button myBtn, Button[,] btnGrd)
         {
@@ -509,15 +503,7 @@ namespace MineSweeper
                             var myButtonM14 = btn_grid[x + 1, y - 1];
                             var myButtonM15 = btn_grid[x, y - 1];
                             var myButtonM16 = btn_grid[x - 1, y - 1];
-                            /*
-                                +----+----+----+                +----+----+----+ 
-                                |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
-                                +----+----+----+                +----+----+----+
-                                |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
-                                +----+----+----+                +----+----+----+
-                                |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
-                                +----+----+----+                +----+----+----+ 
-                            */
+                            
                             if (myButtonP1.Text == " ") { mineCountInner++; }
                             if (myButtonP14.Text == " ") { mineCountInner++; }
                             if (myButtonP15.Text == " ") { mineCountInner++; }

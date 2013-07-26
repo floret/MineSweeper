@@ -81,7 +81,7 @@ namespace MineSweeper
                     mineYOutside = mineY;
                 }
             }
-            while (mineCount != 40);//70 makes it insanely difficult. //!creates less than the specified amount of mines.
+            while (mineCount != 15);//70 makes it insanely difficult. //!creates less than the specified amount of mines.
 
             foreach (Button btn in btn_grid)
             {
