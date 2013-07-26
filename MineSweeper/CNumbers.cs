@@ -15,7 +15,7 @@ namespace MineSweeper
             //constructor.
         }
 
-        CSurroundCount SurroundCount = new CSurroundCount();
+        //CSurroundCount SurroundCount = new CSurroundCount();
 
         /// <summary>
         /// Decides which fore- and backcolor to make the selected 
@@ -26,7 +26,7 @@ namespace MineSweeper
             if (numOfMines == 0)//expand and count surrounding squares' mines.
             {
                 myBtn.BackColor = Color.Gray;
-                SurroundCount.ButtonSurround(myBtn, btn_grid);
+                //SurroundCount.ButtonSurround(myBtn, btn_grid);//rather call from form1.
             }
             else if (numOfMines == 1)
             {

@@ -7,7 +7,7 @@ using System.Windows.Forms;//needed for button.
 
 namespace MineSweeper
 {
-    class CSurroundCount
+    class CSurroundCount:CNumbers
     {
         public CSurroundCount()
         {
@@ -152,7 +152,8 @@ namespace MineSweeper
                                 if (p1m16.Text == " ") { mineOuterCounterP1++; }
                                 if (mineOuterCounterP1 != 0)
                                 {
-                                    myButtonP1.Text = mineOuterCounterP1.ToString();//!always 0
+                                    myButtonP1.Text = mineOuterCounterP1.ToString();
+                                    DisplayCount(mineOuterCounterP1, myButtonP1);
                                 }
                             }
                             var myButtonP14 = btn_grid[x - 1, y + 1];
@@ -181,7 +182,8 @@ namespace MineSweeper
                                 if (p14m16.Text == " ") { mineOuterCounterP14++; }
                                 if (mineOuterCounterP14 != 0)
                                 {
-                                    myButtonP14.Text = mineOuterCounterP14.ToString();//!always 0
+                                    myButtonP14.Text = mineOuterCounterP14.ToString();
+                                    DisplayCount(mineOuterCounterP14, myButtonP14);
                                 }
                             }
                             var myButtonP15 = btn_grid[x, y + 1];
@@ -210,7 +212,8 @@ namespace MineSweeper
                                 if (p15m16.Text == " ") { mineOuterCounterP15++; }
                                 if (mineOuterCounterP15 != 0)
                                 {
-                                    myButtonP15.Text = mineOuterCounterP15.ToString();//!always 0
+                                    myButtonP15.Text = mineOuterCounterP15.ToString();
+                                    DisplayCount(mineOuterCounterP15, myButtonP15);
                                 }
                             }
                             var myButtonP16 = btn_grid[x + 1, y + 1];//start by getting the grid right.
@@ -240,6 +243,7 @@ namespace MineSweeper
                                 if (mineOuterCounterP16 != 0)
                                 {
                                     myButtonP16.Text = mineOuterCounterP16.ToString();
+                                    DisplayCount(mineOuterCounterP16, myButtonP16);
                                 }
                             }
                             var myButtonM1 = btn_grid[x - 1, y];
@@ -269,6 +273,7 @@ namespace MineSweeper
                                 if (mineOuterCounterM1 != 0)
                                 {
                                     myButtonM1.Text = mineOuterCounterM1.ToString();
+                                    DisplayCount(mineOuterCounterM1, myButtonM1);
                                 }
                             }
                             var myButtonM14 = btn_grid[x + 1, y - 1];
@@ -298,6 +303,7 @@ namespace MineSweeper
                                 if (mineOuterCounterM14 != 0)
                                 {
                                     myButtonM14.Text = mineOuterCounterM14.ToString();
+                                    DisplayCount(mineOuterCounterM14, myButtonM14);
                                 }
                             }
                             var myButtonM15 = btn_grid[x, y - 1];
@@ -327,6 +333,7 @@ namespace MineSweeper
                                 if (mineOuterCounterM15 != 0)
                                 {
                                     myButtonM15.Text = mineOuterCounterM15.ToString();
+                                    DisplayCount(mineOuterCounterM15, myButtonM15);
                                 }
                             }
                             var myButtonM16 = btn_grid[x - 1, y - 1];
@@ -356,7 +363,7 @@ namespace MineSweeper
                                 if (mineOuterCounterM16 != 0)
                                 {
                                     myButtonM16.Text = mineOuterCounterM16.ToString();
-                                    //Numbers.DisplayCount(mineOuterCounterM16,myBtn);
+                                    DisplayCount(mineOuterCounterM16, myButtonM16);     //doing it like this works.                               
                                 }
                             }
                         }
@@ -372,7 +379,7 @@ namespace MineSweeper
               |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
               +----+----+----+                +----+----+----+ 
            */
-
+            
         }
 
         Button[,] btn_grid;

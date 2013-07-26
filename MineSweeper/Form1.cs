@@ -19,6 +19,7 @@ namespace MineSweeper
         //Custom exeptions.
         class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.        
         CNumbers Numbers = new CNumbers();
+        CSurroundCount SurroundCount = new CSurroundCount();
         /// <summary>
         /// creates a grid of buttons that serves as the game "field".
         /// </summary>
@@ -102,6 +103,7 @@ namespace MineSweeper
 
             //Count Mines:
             mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.
+            //Numbers.DisplayCount(mineCountInner,myButton);
             //Checks for mines in myButton
             try//mine found in myButton
             {
@@ -121,17 +123,12 @@ namespace MineSweeper
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
-                        //
+                        Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that counts the number of mines that surround myButton.  
                         if (mineCountInner == 0)
                         {
-                            //call the surrounding button count class method here to count the surrounding surrounding buttons.
+                            SurroundCount.ButtonSurround(myButton, btn_grid);
                         }
-                        else
-                        {
-                            Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that decides what color to make myButton's fore- and backcolor 
-                        }
-                        //                                              
-                        mineCountInner = 0;
+                        mineCountInner = 0;//makes CNumbers reusable.
                     }
                 }
                 if ((myButton.Text == "*") && (GOFlag != 1))//the &&(GOFlag!=1) prevents the Game Over message from being displayed more than once a round.
