@@ -16,7 +16,7 @@ namespace MineSweeper
         /// </summary>
         public void DisplayCount(int numOfMines, Button myBtn)
         {
-            if (numOfMines == 0)//expand and count surrounding squares' mines.
+            if (numOfMines == 0)
             {
                 myBtn.BackColor = Color.Gray;//No surrounding mines.              
             }

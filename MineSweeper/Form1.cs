@@ -126,7 +126,7 @@ namespace MineSweeper
                     {
                         Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that counts the number of mines that surround myButton.  
 
-                        if (mineCountInner == 0)
+                        if (mineCountInner == 0)//****START HERE****\\
                         {
                             //this should display the numbers of surrrounding mines, if there are any and expand to a new cell if there aren't doing the same for it.
 
