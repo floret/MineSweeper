@@ -9,14 +9,7 @@ using System.Windows.Forms;//needed for button.
 namespace MineSweeper
 {
     class CNumbers
-    {
-        public CNumbers()
-        {
-            //constructor.
-        }
-
-        //CSurroundCount SurroundCount = new CSurroundCount();
-
+    {        
         /// <summary>
         /// Decides which fore- and backcolor to make the selected 
         /// button and what number to display as it's text.
@@ -25,8 +18,7 @@ namespace MineSweeper
         {
             if (numOfMines == 0)//expand and count surrounding squares' mines.
             {
-                myBtn.BackColor = Color.Gray;
-                //SurroundCount.ButtonSurround(myBtn, btn_grid);//rather call from form1.
+                myBtn.BackColor = Color.Gray;//No surrounding mines.              
             }
             else if (numOfMines == 1)
             {

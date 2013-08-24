@@ -26,12 +26,12 @@ namespace MineSweeper
         private Button createButton(int x, int y, int gridX, int gridY)
         {
             Button btn = new Button();
-            btn.Text = "";                                                      //makes the button display nothing.
+            btn.Text = "";                                                      
             btn.Name = gridX.ToString() + " " + gridY.ToString();               //names the new button its position within the grid.
             btn.Size = new System.Drawing.Size(30, 30);                         //makes the button 30 x 30 pixels big.
-            btn.FlatStyle = FlatStyle.Flat;                                     //makes the buttons look more like a grid by making them look flat.
+            btn.FlatStyle = FlatStyle.Flat;                                 
             btn.Location = new System.Drawing.Point(x, y);                      //uses the x and y values to determine where it will be drawn.
-            panel1.Controls.AddRange(new System.Windows.Forms.Control[] { btn, });//adds the buttons to the panel.
+            panel1.Controls.AddRange(new System.Windows.Forms.Control[] { btn, });
             return btn;
         }
         private int[,] grid;
@@ -53,10 +53,11 @@ namespace MineSweeper
             panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
             grid = new int[15, 15];
             btn_grid = new Button[15, 15];
+
             for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
             {
                 for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-                {//populates the btn_grid array, which is an array of buttons, with buttons made with the createButton method.
+                {//populates btn_grid an array of buttons made with the createButton method.
                     btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid by calling the createButton method.
                     grid[x, y] = 0;
                     YOutside = y;
@@ -64,9 +65,10 @@ namespace MineSweeper
                 }
             }
             //Add mines.
-            Random rand = new Random();                                          //creates a random (variable?) for the placement of the mines.
+            Random rand = new Random();//Used for placement of mines.                  
             int mineCount = 0;
-            do
+
+            while (mineCount < 15) //70 makes it insanely difficult.
             {
                 int mineX = rand.Next(15);
                 int mineY = rand.Next(15);
@@ -75,17 +77,16 @@ namespace MineSweeper
                 {//the mines are hidden by making their text properties " "
                     btn_grid[mineX, mineY].Text = " ";                          //used to hide the mines in plain unsight.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
-                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);//location of new square is next to old square
-                    mineCount++;
+                    btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);//location of new square is next to old square                    
                     mineXOutside = mineX;
                     mineYOutside = mineY;
                 }
+                mineCount++;
             }
-            while (mineCount != 15);//70 makes it insanely difficult. //!creates less than the specified amount of mines.
-
+            
             foreach (Button btn in btn_grid)
             {
-                btn.Click += new EventHandler(MineClickedOrNot);                //click event handler for the grid of buttons.
+                btn.Click += new EventHandler(MineClickedOrNot);//click event sender for the grid of buttons.
             }
             lblMineCount.Text = "Mines Left: " + mineCount.ToString();//displays the amount of mines that are left.
         }
@@ -94,16 +95,16 @@ namespace MineSweeper
         /// <summary>
         /// When the user clicks on a button in the button grid, this method checks whether it contains a
         /// mine or not, if it does it changes the colour of the button to red and reveils the location of 
-        /// the other mines and if it doesn't, it changes the button's colour to green.
+        /// the other mine.
         /// </summary>
         int mineCountInner = 0;
-        private void MineClickedOrNot(object sender, EventArgs e)               //click event handler for the grid of buttons.
+        private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
         {
             Button myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
 
             //Count Mines:
-            mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.
-            //Numbers.DisplayCount(mineCountInner,myButton);
+            mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.   
+    
             //Checks for mines in myButton
             try//mine found in myButton
             {
@@ -124,9 +125,12 @@ namespace MineSweeper
                     if (GOFlag == 0)//GOFlag --> Game Over Flag.
                     {
                         Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that counts the number of mines that surround myButton.  
+
                         if (mineCountInner == 0)
                         {
-                            SurroundCount.ButtonSurround(myButton, btn_grid);
+                            //this should display the numbers of surrrounding mines, if there are any and expand to a new cell if there aren't doing the same for it.
+
+                            //SurroundCount.ButtonSurround(myButton, btn_grid);
                         }
                         mineCountInner = 0;//makes CNumbers reusable.
                     }
