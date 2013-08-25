@@ -21,26 +21,26 @@ namespace MineSweeper
         CNumbers Numbers = new CNumbers();
         CSurroundCount SurroundCount = new CSurroundCount();
         /// <summary>
-        /// creates a grid of buttons that serves as the game "field".
+        /// creates a grid of buttons that serves as the game board.
         /// </summary>
         private Button createButton(int x, int y, int gridX, int gridY)
         {
             Button btn = new Button();
             btn.Text = "";                                                      
-            btn.Name = gridX.ToString() + " " + gridY.ToString();               //names the new button its position within the grid.
-            btn.Size = new System.Drawing.Size(30, 30);                         //makes the button 30 x 30 pixels big.
+            btn.Name = gridX.ToString() + " " + gridY.ToString();//names the new button its position within the grid.
+            btn.Size = new System.Drawing.Size(30, 30);//makes the button 30 x 30 pixels big.
             btn.FlatStyle = FlatStyle.Flat;                                 
-            btn.Location = new System.Drawing.Point(x, y);                      //uses the x and y values to determine where it will be drawn.
+            btn.Location = new System.Drawing.Point(x, y);//uses the x and y values to determine where it will be drawn.
             panel1.Controls.AddRange(new System.Windows.Forms.Control[] { btn, });
             return btn;
         }
         private int[,] grid;
-        private Button[,] btn_grid;                                             //array of buttons.
+        private Button[,] btn_grid;//array of buttons.
         int startX = 10, startY = 10;
-        int mineXOutside = 0;                                                   //mine's x co-ordinate useble by all methods.
-        int mineYOutside = 0;                                                   //mine's y co-ordinate useble by all methods.
-        int XOutside = 0;                                                       //created so that the x value can be used by all methods
-        int YOutside = 0;                                                       //created so that the y value can be used by all methods
+        int mineXOutside = 0;//mine's x co-ordinate useble by all methods.
+        int mineYOutside = 0;//mine's y co-ordinate useble by all methods.
+        int XOutside = 0;//created so that the x value can be used by all methods
+        int YOutside = 0;//created so that the y value can be used by all methods
         int GOFlag = 0;//Flag to show that the Game Over message has been displayed.
 
         /// <summary>
@@ -50,15 +50,16 @@ namespace MineSweeper
         {
             mineCountInner = 0;
             GOFlag = 0;//make the buttons able to clicked again.
-            panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
+            panel1.Controls.Clear();//enables the game to restart if the start button is clicked.            
             grid = new int[15, 15];
             btn_grid = new Button[15, 15];
 
-            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+            for (int x = 0; x < 15; x++)//for the horizontal buttons.
             {
-                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                for (int y = 0; y < 15; y++)//for the vertical buttons.
                 {//populates btn_grid an array of buttons made with the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid by calling the createButton method.
+                    //creates the button grid by calling the createButton method.
+                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
@@ -75,7 +76,7 @@ namespace MineSweeper
 
                 if (grid[mineX, mineY] == 0)
                 {//the mines are hidden by making their text properties " "
-                    btn_grid[mineX, mineY].Text = " ";                          //used to hide the mines in plain unsight.
+                    btn_grid[mineX, mineY].Text = " ";//used to hide the mines in plain unsight.
                     btn_grid[mineX, mineY].Font = new Font("Microsoft Sans Serif", 10f, btn_grid[mineX, mineY].Font.Style, btn_grid[mineX, mineY].Font.Unit);
                     btn_grid[mineX, mineY].Location = new System.Drawing.Point(btn_grid[mineX, mineY].Location.X, btn_grid[mineX, mineY].Location.Y);//location of new square is next to old square                    
                     mineXOutside = mineX;
@@ -100,7 +101,7 @@ namespace MineSweeper
         int mineCountInner = 0;
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
         {
-            Button myButton = (Button)sender;                                      //makes the button in the grid that the user clicked myButton.
+            Button myButton = (Button)sender;//makes the button in the grid that the user clicked myButton.
 
             //Count Mines:
             mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.   
@@ -108,15 +109,15 @@ namespace MineSweeper
             //Checks for mines in myButton
             try//mine found in myButton
             {
-                if (myButton.Text == " ")                                           //if the button contains a mine.
+                if (myButton.Text == " ")//if the button contains a mine.
                 {
                     myButton.BackColor = Color.Red;
-                    foreach (Button btn in btn_grid)                                //for all the buttons in the grid.
+                    foreach (Button btn in btn_grid)//for all the buttons in the grid.
                     {
-                        if (btn.Text == " ")                                        //if the button contains a mine
+                        if (btn.Text == " ")//if the button contains a mine
                         {
-                            btn.BackColor = Color.Red;                              //make  the button red
-                            btn.Text = "*";                                         //and make it contain a "*" which represents a mine.                            
+                            btn.BackColor = Color.Red;
+                            btn.Text = "*";// "*" represents a mine.                            
                         }
                     }
                 }
