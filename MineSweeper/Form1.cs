@@ -16,10 +16,22 @@ namespace MineSweeper
         {
             InitializeComponent();
         }
+
         //Custom exeptions.
-        class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.        
+        class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.      
+  
         CNumbers Numbers = new CNumbers();
         CSurroundCount SurroundCount = new CSurroundCount();
+
+        private int[,] grid;
+        private Button[,] btn_grid;//array of buttons.
+        int startX = 10, startY = 10;
+        int mineXOutside = 0;//mine's x co-ordinate useble by all methods.
+        int mineYOutside = 0;//mine's y co-ordinate useble by all methods.
+        int XOutside = 0;//created so that the x value can be used by all methods
+        int YOutside = 0;//created so that the y value can be used by all methods
+        int GOFlag = 0;//Flag to show that the Game Over message has been displayed.
+
         /// <summary>
         /// creates a grid of buttons that serves as the game board.
         /// </summary>
@@ -34,15 +46,7 @@ namespace MineSweeper
             panel1.Controls.AddRange(new System.Windows.Forms.Control[] { btn, });
             return btn;
         }
-        private int[,] grid;
-        private Button[,] btn_grid;//array of buttons.
-        int startX = 10, startY = 10;
-        int mineXOutside = 0;//mine's x co-ordinate useble by all methods.
-        int mineYOutside = 0;//mine's y co-ordinate useble by all methods.
-        int XOutside = 0;//created so that the x value can be used by all methods
-        int YOutside = 0;//created so that the y value can be used by all methods
-        int GOFlag = 0;//Flag to show that the Game Over message has been displayed.
-
+        
         /// <summary>
         /// This button starts or resets the game, by having a grid of buttons made and then randomly adding less than 70 mines to the grid.
         /// </summary>
@@ -92,11 +96,10 @@ namespace MineSweeper
             lblMineCount.Text = "Mines Left: " + mineCount.ToString();//displays the amount of mines that are left.
         }
 
-
         /// <summary>
         /// When the user clicks on a button in the button grid, this method checks whether it contains a
         /// mine or not, if it does it changes the colour of the button to red and reveils the location of 
-        /// the other mine.
+        /// the other mines.
         /// </summary>
         int mineCountInner = 0;
         private void MineClickedOrNot(object sender, EventArgs e)//click event handler for the grid of buttons.
