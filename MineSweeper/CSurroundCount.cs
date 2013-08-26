@@ -18,22 +18,31 @@ namespace MineSweeper
             |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
             +----+----+----+                +----+----+----+ 
         */
-
+        CNumbers Numbers = new CNumbers();
+        //Form1 FORM = new Form1();
         /// <summary>
         /// When myButton has no mines surrounding it.
         /// </summary>
-        public void When0(Button mybtn, Button[,] btn_grid)
+        public int When0(Button mybtn, Button[,] btn_grid)
         {
-            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+            //Button[,] Grid;
+            int Count = 0;
+            for (int x = 0; x < 15; x++)//for the horizontal buttons.
             {
-                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                for (int y = 0; y < 15; y++)//for the vertical buttons.
                 {
+                    //Grid = new Button[15, 15];//initialises Grid.
                     if (btn_grid[x, y] == mybtn)//gets position of mybtn.
                     {
- 
+                        if (mybtn == btn_grid[0, 0])
+                        {
+                            Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton
+                        }
+
                     }
                 }
             }
+            return Count;
         }
 
     }
