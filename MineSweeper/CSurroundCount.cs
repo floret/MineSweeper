@@ -34,11 +34,7 @@ namespace MineSweeper
                     //Grid = new Button[15, 15];//initialises Grid.
                     if (btn_grid[x, y] == mybtn)//gets position of mybtn.
                     {
-                        if (mybtn == btn_grid[0, 0])
-                        {
-                            Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton
-                        }
-
+                        Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton                        
                     }
                 }
             }

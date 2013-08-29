@@ -130,30 +130,40 @@ namespace MineSweeper
                     {
                         Numbers.DisplayCount(mineCountInner, myButton);//calls a class method that counts the number of mines that surround myButton.  
 
-                        if (mineCountInner == 0)//****START HERE****\\
+                        if (mineCountInner == 0)
                         {
-                            //this should display the numbers of surrrounding mines, if there are any and expand to a new cell if there aren't doing the same for it.
-
-                            //SurroundCount.ButtonSurround(myButton, btn_grid);
                             for (int x = 0; x < 15; x++)//for the horizontal buttons.
                             {
                                 for (int y = 0; y < 15; y++)//for the vertical buttons.
                                 {
-                                    Button[,] Grid;
-                                    Grid = new Button[15, 15];//initialises Grid.
                                     if (btn_grid[x, y] == myButton)//gets position of mybtn.
                                     {
-                                        Button btn_m1_m1 = btn_grid[x - 1, y - 1];
-                                        //if (myButton == Grid[0, 0])
-                                        //{
-                                        int a = 0;
-                                        int i_m1_m1 = SurroundCount.When0(btn_m1_m1, btn_grid);//myButton
-                                        
-                                        a = Numbers.MineCount(btn_m1_m1, Grid);
-                                        Numbers.DisplayCount(a, btn_m1_m1);
-                                        //btn_m1_m1.Text = a.ToString();
-                                        //btn_m1_m1.BackColor = Color.Black;
-                                        //}
+                                        Button btn_m1_m1 = btn_grid[x - 1, y - 1];  //  +----+----+----+
+                                        Button btn_0_m1 = btn_grid[x, y - 1];       //  |x-1 | x  |x+1 | 
+                                        Button btn_1_m1 = btn_grid[x + 1, y - 1];   //  +----+----+----+ 
+                                        Button btn_m1_0 = btn_grid[x - 1, y];       //  |x-1 |mybn|x+1 | 
+                                        Button btn_1_0 = btn_grid[x + 1, y];        //  +----+----+----+  
+                                        Button btn_m1_1 = btn_grid[x - 1, y + 1];   //  |x-1 | x  |x+1 | 
+                                        Button btn_0_1 = btn_grid[x, y + 1];        //  +----+----+----+ 
+                                        Button btn_1_1 = btn_grid[x + 1, y + 1];
+
+                                        int i_m1_m1 = SurroundCount.When0(btn_m1_m1, btn_grid);
+                                        int i_0_m1 = SurroundCount.When0(btn_0_m1, btn_grid);
+                                        int i_1_m1 = SurroundCount.When0(btn_1_m1, btn_grid);
+                                        int i_m1_0 = SurroundCount.When0(btn_m1_0, btn_grid);
+                                        int i_1_0 = SurroundCount.When0(btn_1_0, btn_grid);
+                                        int i_m1_1 = SurroundCount.When0(btn_m1_1, btn_grid);
+                                        int i_0_1 = SurroundCount.When0(btn_0_1, btn_grid);
+                                        int i_1_1 = SurroundCount.When0(btn_1_1, btn_grid);
+
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_m1_m1, btn_grid), btn_m1_m1);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_0_m1, btn_grid), btn_0_m1);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_1_m1, btn_grid), btn_1_m1);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_m1_0, btn_grid), btn_m1_0);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_1_0, btn_grid), btn_1_0);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_m1_1, btn_grid), btn_m1_1);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_0_1, btn_grid), btn_0_1);
+                                        Numbers.DisplayCount(Numbers.MineCount(btn_1_1, btn_grid), btn_1_1);
                                     }
                                 }
                             }
