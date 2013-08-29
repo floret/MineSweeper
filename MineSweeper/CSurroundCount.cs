@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;//needed for button.
 
 namespace MineSweeper
-{
+{ 
     class CSurroundCount
     {
+        frmMain Main;
+        //public CSurroundCount(Form frmain)
+        //{
+            
+        //    //frmMain = MineSweeper.frmMain;
+        //    //Main = this.frmMain;
+        //    //frmain = Main;
+        //    //frmain.Show();
+        //}
         /*
             +----+----+----+                +----+----+----+ 
             |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
@@ -33,8 +42,15 @@ namespace MineSweeper
                 {
                     //Grid = new Button[15, 15];//initialises Grid.
                     if (btn_grid[x, y] == mybtn)//gets position of mybtn.
-                    {
-                        Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton                        
+                    {                        
+                        Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton  
+                        if (Count == 0)//call expansion from here.
+                        {
+                            
+                            //MessageBox.Show("1");                            
+                            //frmMain.Expansion(mybtn);//calls the method in Form1
+                           //Expansion(mybtn);
+                        }
                     }
                 }
             }

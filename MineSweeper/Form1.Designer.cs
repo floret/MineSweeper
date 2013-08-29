@@ -1,6 +1,6 @@
 ﻿namespace MineSweeper
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -59,7 +59,7 @@
             this.lblMineCount.TabIndex = 2;
             this.lblMineCount.Text = "Mines Left: ";
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -67,7 +67,7 @@
             this.Controls.Add(this.lblMineCount);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnStart);
-            this.Name = "Form1";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MineSweeper";
             this.ResumeLayout(false);
