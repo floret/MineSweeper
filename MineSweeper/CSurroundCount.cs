@@ -10,14 +10,10 @@ namespace MineSweeper
     class CSurroundCount
     {
         frmMain Main;
-        //public CSurroundCount(Form frmain)
-        //{
-            
-        //    //frmMain = MineSweeper.frmMain;
-        //    //Main = this.frmMain;
-        //    //frmain = Main;
-        //    //frmain.Show();
-        //}
+        public CSurroundCount(Form frmCalled)
+        {
+            Main = (frmMain)frmCalled;           
+        }
         /*
             +----+----+----+                +----+----+----+ 
             |x-1 | x  |x+1 | y-1            | M16| M15|M14 |

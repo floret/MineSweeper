@@ -21,7 +21,7 @@ namespace MineSweeper
         class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.      
 
         CNumbers Numbers = new CNumbers();
-        CSurroundCount SurroundCount = new CSurroundCount(/*MineSweeper.frmMain.ActiveForm*/);
+        CSurroundCount SurroundCount = new CSurroundCount(Form);
 
         //properties        
         private Button ExpandBtn;
