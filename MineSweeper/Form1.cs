@@ -15,19 +15,20 @@ namespace MineSweeper
         public frmMain()
         {
             InitializeComponent();
+            CSurroundCount SurroundCount = new CSurroundCount(this);
         }
 
         //Custom exeptions.
         class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.      
-
+        CSurroundCount SurroundCount = new CSurroundCount();
         CNumbers Numbers = new CNumbers();
-        CSurroundCount SurroundCount = new CSurroundCount(Form);
+
 
         //properties        
         private Button ExpandBtn;
         public Button setExpandBtn
         {
-            get{return this.ExpandBtn ;}
+            get { return this.ExpandBtn; }
             set
             {
                 Expansion(value);
@@ -183,13 +184,13 @@ namespace MineSweeper
                           |x-1 | x  |x+1 | 
                           +----+----+----+ 
                         */
-                        try
-                        {
+                        //try
+                        //{
                             Button btn_m1_m1 = btn_grid[x - 1, y - 1];
                             int i_m1_m1 = SurroundCount.When0(btn_m1_m1, btn_grid);
                             Numbers.DisplayCount(Numbers.MineCount(btn_m1_m1, btn_grid), btn_m1_m1);
-                        }
-                        catch (Exception) { }
+                        //}
+                        //catch (Exception) { }
                         try
                         {
                             Button btn_0_m1 = btn_grid[x, y - 1];
