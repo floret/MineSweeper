@@ -8,25 +8,7 @@ using System.Windows.Forms;//needed for button.
 namespace MineSweeper
 {
     class CSurroundCount
-    {
-        //public CSurroundCount()
-        //{
-
-        //}
-        //Form Main;
-        //public CSurroundCount(Form frmCalled)
-        //{
-        //    Main = (frmMain)frmCalled;
-        //}
-        /*
-            +----+----+----+                +----+----+----+ 
-            |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
-            +----+----+----+                +----+----+----+
-            |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
-            +----+----+----+                +----+----+----+
-            |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
-            +----+----+----+                +----+----+----+ 
-        */
+    {  
         CNumbers Numbers = new CNumbers();
 
         /// <summary>
@@ -42,9 +24,9 @@ namespace MineSweeper
                     if (btn_grid[x, y] == mybtn)//gets position of mybtn.
                     {
                         Count = Numbers.MineCount(mybtn, btn_grid);//gets count of mines around mybutton  
-                        if (Count == 0)//call expansion from here.
+                        if (Count == 0)//call expansion again because a surrounding button is surrounded by no buttons.
                         {
-                            Expansion(mybtn, btn_grid);//hele fokken form is null.
+                            Expansion(mybtn, btn_grid);//calls expansion with the new button as mybtn perpetuating the expansion.
                         }
                     }
                 }
@@ -73,19 +55,17 @@ namespace MineSweeper
                           |x-1 | x  |x+1 | 
                           +----+----+----+ 
                         */
-                        try
+                        try//for if the button being created is outside of the grid.
                         {
                             Button btn_m1_m1 = btn_grid[x - 1, y - 1];
-                            int i_m1_m1 = When0(btn_m1_m1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_m1_m1, btn_grid), btn_m1_m1);
-                            Numbers.DisplayCount(i_m1_m1, btn_m1_m1);
+                            int i_m1_m1 = When0(btn_m1_m1, btn_grid);//used to gets count of mines around btn_m1_m1
+                            Numbers.DisplayCount(i_m1_m1, btn_m1_m1);//used to change the colour and text of btn_m1_m1 to the amount of mines surrounding it.
                         }
-                        catch (Exception) { }
+                        catch (Exception) { }//does nothing because button can't be created.
                         try
                         {
                             Button btn_0_m1 = btn_grid[x, y - 1];
                             int i_0_m1 = When0(btn_0_m1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_0_m1, btn_grid), btn_0_m1);
                             Numbers.DisplayCount(i_0_m1, btn_0_m1);
                         }
                         catch (Exception) { }
@@ -93,7 +73,6 @@ namespace MineSweeper
                         {
                             Button btn_1_m1 = btn_grid[x + 1, y - 1];
                             int i_1_m1 = When0(btn_1_m1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_1_m1, btn_grid), btn_1_m1);
                             Numbers.DisplayCount(i_1_m1,btn_1_m1);
                         }
                         catch (Exception) { }
@@ -101,7 +80,6 @@ namespace MineSweeper
                         {
                             Button btn_m1_0 = btn_grid[x - 1, y];
                             int i_m1_0 = When0(btn_m1_0, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_m1_0, btn_grid), btn_m1_0);
                             Numbers.DisplayCount(i_m1_0,btn_m1_0);
                         }
                         catch (Exception) { }
@@ -109,7 +87,6 @@ namespace MineSweeper
                         {
                             Button btn_1_0 = btn_grid[x + 1, y];
                             int i_1_0 = When0(btn_1_0, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_1_0, btn_grid), btn_1_0);
                             Numbers.DisplayCount(i_1_0,btn_1_0);
                         }
                         catch (Exception) { }
@@ -117,7 +94,6 @@ namespace MineSweeper
                         {
                             Button btn_m1_1 = btn_grid[x - 1, y + 1];
                             int i_m1_1 = When0(btn_m1_1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_m1_1, btn_grid), btn_m1_1);
                             Numbers.DisplayCount(i_m1_1,btn_m1_1);
                         }
                         catch (Exception) { }
@@ -125,15 +101,13 @@ namespace MineSweeper
                         {
                             Button btn_0_1 = btn_grid[x, y + 1];
                             int i_0_1 = When0(btn_0_1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_0_1, btn_grid), btn_0_1);
                             Numbers.DisplayCount(i_0_1,btn_0_1);
                         }
                         catch (Exception) { }
                         try
                         {
                             Button btn_1_1 = btn_grid[x + 1, y + 1];
-                            int i_1_1 = When0(btn_1_1, btn_grid);
-                            //Numbers.DisplayCount(Numbers.MineCount(btn_1_1, btn_grid), btn_1_1);
+                            int i_1_1 = When0(btn_1_1, btn_grid);                            
                             Numbers.DisplayCount(i_1_1,btn_1_1);
                         }
                         catch (Exception) { }
