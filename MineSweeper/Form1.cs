@@ -147,6 +147,9 @@ namespace MineSweeper
                         {
                             //make this a method.
                             SurroundCount.Expansion(myButton, btn_grid);
+
+                            //int i_1_m1 = When0(btn_1_m1, btn_grid);
+                            //Numbers.DisplayCount(Numbers.MineCount(btn_1_m1, btn_grid), btn_1_m1);
                             //Expansion(myButton);
                         }
                         mineCountInner = 0;//makes CNumbers reusable.
