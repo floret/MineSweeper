@@ -16,58 +16,7 @@ namespace MineSweeper
         /// </summary>
         public void DisplayCount(int numOfMines, Button myBtn)
         {
-            if (numOfMines == 0)
-            {
-                myBtn.BackColor = Color.Gray;//No surrounding mines.              
-            }
-            else if (numOfMines == 1)
-            {
-                myBtn.Text = "1";
-                myBtn.ForeColor = Color.Green;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 2)
-            {
-                myBtn.Text = "2";
-                myBtn.ForeColor = Color.Blue;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 3)
-            {
-                myBtn.Text = "3";
-                myBtn.ForeColor = Color.Red;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 4)
-            {
-                myBtn.Text = "4";
-                myBtn.ForeColor = Color.DarkBlue;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 5)
-            {
-                myBtn.Text = "5";
-                myBtn.ForeColor = Color.Orange;//find out colors from here on up.
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 6)
-            {
-                myBtn.Text = "6";
-                myBtn.ForeColor = Color.LightBlue;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 7)
-            {
-                myBtn.Text = "7";
-                myBtn.ForeColor = Color.Cyan;
-                myBtn.BackColor = Color.LightGray;
-            }
-            else if (numOfMines == 8)
-            {
-                myBtn.Text = "8";
-                myBtn.ForeColor = Color.White;
-                myBtn.BackColor = Color.LightGray;
-            }
+            
         }
 
         int mineCountInner = 0;
