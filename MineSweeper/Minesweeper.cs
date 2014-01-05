@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MineSweeper
 {
-    public partial class Form1 : Form
+    public partial class Minesweeper : Form
     {
-        public Form1()
+        public Minesweeper()
         {
             InitializeComponent();
         }
@@ -49,14 +49,16 @@ namespace MineSweeper
         {
             mineCountInner = 0;
             GOFlag = 0;//make the buttons able to clicked again.
-            panel1.Controls.Clear();                                            //enables the game to restart if the start button is clicked.            
+            panel1.Controls.Clear();//enables the game to restart if the start button is clicked.            
             grid = new int[15, 15];
             btn_grid = new Button[15, 15];
-            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+
+            for (int x = 0; x < 15; x++)//for the horizontal buttons.
             {
-                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
-                {//populates the btn_grid array, which is an array of buttons, with buttons made with the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);//creates the button grid by calling the createButton method.
+                for (int y = 0; y < 15; y++)//for the vertical buttons.
+                {//populates btn_grid an array of buttons made with the createButton method.
+                    //creates the button grid by calling the createButton method.
+                    btn_grid[x, y] = createButton(25 * x, 25 * y, x, y);
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
