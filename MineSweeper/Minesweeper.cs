@@ -20,11 +20,9 @@ namespace MineSweeper
 
         //Custom exeptions.
         class exMineFound : System.Exception { }//Stops the buttons responding after a mine has been clicked.  
-        CNumbers Numbers = new CNumbers();
 
         private int[,] grid;
         public Button[,] btn_grid;//array of buttons.
-        int startX = 10, startY = 10;
         int mineXOutside = 0;//mine's x co-ordinate useble by all methods.
         int mineYOutside = 0;//mine's y co-ordinate useble by all methods.
         int XOutside = 0;//created so that the x value can be used by all methods
@@ -37,11 +35,11 @@ namespace MineSweeper
         private Button createButton(int x, int y, int gridX, int gridY)
         {
             Button btn = new Button();
-            btn.Text = "";
+            btn.Text = "";//does not contain a mine/blank text.
             btn.Name = gridX.ToString() + " " + gridY.ToString();//names the new button its position within the grid.
             btn.Size = new System.Drawing.Size(30, 30);//makes the button 30 x 30 pixels big.
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.Location = new System.Drawing.Point(x, y);//uses the x and y values to determine where it will be drawn.
+            btn.FlatStyle = FlatStyle.Flat;//determines what the button looks like.
+            btn.Location = new System.Drawing.Point(x, y);//uses the x and y values to determine where button will be drawn.
             panel1.Controls.AddRange(new System.Windows.Forms.Control[] { btn, });
             return btn;
         }
@@ -62,7 +60,7 @@ namespace MineSweeper
                 for (int y = 0; y < 15; y++)//for the vertical buttons.
                 {//populates btn_grid an array of buttons made with the createButton method.
                     //creates the button grid by calling the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
+                    btn_grid[x, y] = createButton(25 * x, 25 * y, x, y);
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
@@ -106,7 +104,7 @@ namespace MineSweeper
             Button myButton = (Button)sender;//makes the button in the grid that the user clicked myButton.
 
             //Count Mines:
-            mineCountInner = Numbers.MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.   
+            mineCountInner = MineCount(myButton, btn_grid);//counts the number of mines that surround myButton.   
 
             //Checks for mines in myButton
             try//mine found in myButton
@@ -126,7 +124,7 @@ namespace MineSweeper
                 else//mine not found in myButton
                 {
                     if (GOFlag == 0)//GOFlag --> Game Over Flag; 0 --> false
-                    { 
+                    {
                         if (mineCountInner == 0)
                         {
                             myButton.BackColor = Color.Gray;//No surrounding mines.              
@@ -179,7 +177,7 @@ namespace MineSweeper
                             myButton.ForeColor = Color.White;
                             myButton.BackColor = Color.LightGray;
                         }
-                        
+
                         mineCountInner = 0;//makes CNumbers reusable.
                     }
                 }
@@ -194,5 +192,151 @@ namespace MineSweeper
                 GOFlag = 1;//used to determine if the Game Over message has already been displayed or not.
             }
         }
+
+        /// <summary>
+        /// Counts the number of mines surrounding a button.
+        /// </summary>
+        public int MineCount(Button myBtn, Button[,] btnGrd)
+        {
+            mineCountInner = 0;
+            btn_grid = btnGrd;
+            for (int x = 0; x < 15; x++)                                        //for the horizontal buttons.
+            {
+                for (int y = 0; y < 15; y++)                                    //for the vertical buttons.
+                {
+                    if (btn_grid[x, y] == myBtn)
+                    {
+                        if (myBtn == btn_grid[0, 0])
+                        {//top right corner.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[0, 14])
+                        {//bottom left
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[14, 0])
+                        {//top right                            
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[14, 14])
+                        {//bottom left                   
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[0, y])
+                        { //side next to left border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            //
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[14, y])
+                        {//side next to right border.                           
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[x, 0])
+                        {//side next to the top border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+                            var myButtonM1 = btn_grid[x - 1, y];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                        }
+                        else if (myBtn == btn_grid[x, 14])
+                        {//side next to bottom border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                        else
+                        {//Squares not next to a border.
+                            var myButtonP1 = btn_grid[x + 1, y];
+                            var myButtonP14 = btn_grid[x - 1, y + 1];
+                            var myButtonP15 = btn_grid[x, y + 1];
+                            var myButtonP16 = btn_grid[x + 1, y + 1];
+
+                            var myButtonM1 = btn_grid[x - 1, y];
+                            var myButtonM14 = btn_grid[x + 1, y - 1];
+                            var myButtonM15 = btn_grid[x, y - 1];
+                            var myButtonM16 = btn_grid[x - 1, y - 1];
+                            /*
+                                +----+----+----+                +----+----+----+ 
+                                |x-1 | x  |x+1 | y-1            | M16| M15|M14 |
+                                +----+----+----+                +----+----+----+
+                                |x-1 |mybn|x+1 | y      -->     | M1 |mybn| P1 |
+                                +----+----+----+                +----+----+----+
+                                |x-1 | x  |x+1 | y+1            |P14 | P15| P16|
+                                +----+----+----+                +----+----+----+ 
+                            */
+                            if (myButtonP1.Text == " ") { mineCountInner++; }
+                            if (myButtonP14.Text == " ") { mineCountInner++; }
+                            if (myButtonP15.Text == " ") { mineCountInner++; }
+                            if (myButtonP16.Text == " ") { mineCountInner++; }
+
+                            if (myButtonM1.Text == " ") { mineCountInner++; }
+                            if (myButtonM14.Text == " ") { mineCountInner++; }
+                            if (myButtonM15.Text == " ") { mineCountInner++; }
+                            if (myButtonM16.Text == " ") { mineCountInner++; }
+                        }
+                    }
+                }
+            }
+            return mineCountInner;
+        }
     }
 }
+//TODO: try using an array that stores the names (btn1415) of the buttons that are mined instead of using MineCount.

@@ -45,9 +45,10 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(12, 48);
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Location = new System.Drawing.Point(12, 49);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(386, 381);
+            this.panel1.Size = new System.Drawing.Size(380, 380);
             this.panel1.TabIndex = 1;
             // 
             // lblMineCount
@@ -63,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 441);
+            this.ClientSize = new System.Drawing.Size(405, 441);
             this.Controls.Add(this.lblMineCount);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnStart);
