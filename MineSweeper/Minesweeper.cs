@@ -62,7 +62,7 @@ namespace MineSweeper
                 for (int y = 0; y < 15; y++)//for the vertical buttons.
                 {//populates btn_grid an array of buttons made with the createButton method.
                     //creates the button grid by calling the createButton method.
-                    btn_grid[x, y] = createButton(startX + 24 * (x + 0), startY + 24 * (y + 0), x, y);
+                    btn_grid[x, y] = createButton(25 * x, 25 * y, x, y);
                     grid[x, y] = 0;
                     YOutside = y;
                     XOutside = x;
